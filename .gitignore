@@ -20,6 +20,7 @@
 # Markdown customization files (local)
 /.markdownlint.yaml
 /.crossnote
+.markdownlint.json
 
 # =========================
 # Keys / secrets
