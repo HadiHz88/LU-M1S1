@@ -17,7 +17,6 @@
 *.asc
 
 # temporary files/folders
-/IN400- Math & statistics
 /IN402- Machine Learning
 
 # node modules
