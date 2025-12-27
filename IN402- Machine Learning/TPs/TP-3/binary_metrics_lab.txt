@@ -1,0 +1,113 @@
+# 🧪 Binary Classification Metrics Lab
+# Complete the missing parts (marked with TODO) and run each cell.
+
+import numpy as np
+from sklearn.metrics import (
+    confusion_matrix, accuracy_score, precision_score, recall_score, f1_score,
+    roc_curve, roc_auc_score
+)
+import matplotlib.pyplot as plt
+
+# =============================================
+# 1️⃣ Setup and Dataset
+# =============================================
+
+# Example true labels and predicted probabilities
+y_true = np.array([1, 0, 1, 0, 1, 0, 1, 0])
+y_scores = np.array([0.95, 0.90, 0.85, 0.70, 0.60, 0.40, 0.20, 0.10])
+
+threshold = 0.5
+
+# TODO: Convert probabilities to binary predictions
+y_pred = None  # <-- fill this line, e.g., (y_scores >= threshold).astype(int)
+
+# =============================================
+# 2️⃣ Confusion Matrix and Basic Metrics
+# =============================================
+
+# TODO: Compute confusion matrix
+cm = None  # <-- fill this line, e.g., confusion_matrix(y_true, y_pred)
+
+tn, fp, fn, tp = cm.ravel()
+print("Confusion Matrix:\n", cm)
+print(f"TP={tp}, FP={fp}, FN={fn}, TN={tn}")
+
+# TODO: Compute Accuracy, Precision, Recall, and F1
+accuracy = None  # <-- accuracy_score(y_true, y_pred)
+precision = None # <-- precision_score(y_true, y_pred)
+recall = None    # <-- recall_score(y_true, y_pred)
+f1 = None        # <-- f1_score(y_true, y_pred)
+
+print(f"\nAccuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
+print(f"Recall: {recall:.2f}")
+print(f"F1-score: {f1:.2f}")
+
+# =============================================
+# 3️⃣ Try Different Thresholds
+# =============================================
+
+thresholds = [0.2, 0.4, 0.6, 0.8]
+results = []
+
+for t in thresholds:
+    y_pred_t = (y_scores >= t).astype(int)
+    prec = precision_score(y_true, y_pred_t)
+    rec = recall_score(y_true, y_pred_t)
+    results.append((t, prec, rec))
+
+# TODO: Print precision & recall for each threshold
+for t, prec, rec in results:
+    print(f"Threshold={t:.2f} → Precision={prec:.2f}, Recall={rec:.2f}")
+
+# =============================================
+# 4️⃣ ROC Curve and AUC
+# =============================================
+
+# TODO: Compute ROC metrics
+fpr, tpr, roc_thresholds = None  # <-- roc_curve(y_true, y_scores)
+
+# TODO: Compute AUC
+auc_score = None  # <-- roc_auc_score(y_true, y_scores)
+
+# Plot ROC Curve
+plt.figure(figsize=(6,6))
+plt.plot(fpr, tpr, marker='o', label=f"ROC curve (AUC = {auc_score:.2f})")
+plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Random Classifier')
+plt.xlabel("False Positive Rate (1 - Specificity)")
+plt.ylabel("True Positive Rate (Recall)")
+plt.title("Receiver Operating Characteristic (ROC)")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# =============================================
+# 5️⃣ Discussion Questions
+# =============================================
+# 1. What happens to precision and recall when the threshold increases?
+# 2. Why might accuracy be misleading in imbalanced datasets?
+# 3. What does an AUC value of 0.5, 0.7, and 0.9 imply about model performance?
+
+# =============================================
+# 🧩 Optional Challenge
+# =============================================
+
+# Uncomment and complete to explore real data
+'''
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+X, y = make_classification(n_samples=200, n_features=5, n_informative=3,
+                           n_redundant=0, random_state=42)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# TODO: Get predicted probabilities (use model.predict_proba)
+y_prob = None  # <-- fill this line
+y_pred = (y_prob >= 0.5).astype(int)
+
+# TODO: Compute metrics again and plot ROC curve
+'''
