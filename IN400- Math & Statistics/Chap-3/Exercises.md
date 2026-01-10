@@ -59,7 +59,12 @@ for n in range(iterations):
     x_n = x_values[-1] # last element in the list
     grad = grad_f(x_n) # compute gradient
     x_next = x_n - alpha * grad # update step
-    print(f"Iteration {n}: x_n = {x_n:.4f}, f'(x_n) = {grad:.4f}, x_(n+1) = {x_next:.4f}")
+    print(
+        f"Iteration {n}: "
+        f"x_n = {x_n:.4f}, "
+        f"f'(x_n) = {grad:.4f}, "
+        f"x_(n+1) = {x_next:.4f}"
+    )
     x_values.append(x_next) # append new value to the list
 ```
 
@@ -382,4 +387,168 @@ for n in range(iterations):
         f"theta_(n+1) = {theta_next:.4f}"
     )
     theta_values.append(theta_next)
+```
+
+---
+
+## Exercise 5
+
+We have a **multi-variable** function:
+
+$$
+f(x, y) = x^2 + 2y^2 + xy
+$$
+
+We use **Full-Batch Gradient Descent** with:
+
+- **Learning rate:** $\alpha = 0.1$
+- **Starting point:** $(x_0, y_0) = (3, 2)$
+
+Compute the first **three iterations** and determine where it converges.
+
+### Solution
+
+- **Gradient calculation:**
+
+For a multi-variable function, we compute the **partial derivatives** with respect to each variable:
+
+$$
+\frac{\partial f}{\partial x} = 2x + y
+$$
+
+$$
+\frac{\partial f}{\partial y} = 4y + x
+$$
+
+The **gradient vector** is:
+
+$$
+\nabla f(x, y) = \begin{bmatrix} 2x + y \\ 4y + x \end{bmatrix}
+$$
+
+Remember that the **Gradient Descent update rule** for multiple variables is:
+
+$$
+\begin{bmatrix} x_{n+1} \\ y_{n+1} \end{bmatrix} = \begin{bmatrix} x_n \\ y_n \end{bmatrix} - \alpha \nabla f(x_n, y_n)
+$$
+
+Or equivalently:
+
+- $x_{n+1} = x_n - \alpha \cdot \frac{\partial f}{\partial x}$
+- $y_{n+1} = y_n - \alpha \cdot \frac{\partial f}{\partial y}$
+
+- Now we can start with the iterations (starting from $(x_0, y_0) = (3, 2)$):
+
+**Iteration 0:**
+
+$$
+\frac{\partial f}{\partial x}(3, 2) = 2(3) + 2 = 8
+$$
+
+$$
+\frac{\partial f}{\partial y}(3, 2) = 4(2) + 3 = 11
+$$
+
+Updates:
+
+$$
+x_1 = 3 - 0.1 \cdot 8 = 2.2 \\
+y_1 = 2 - 0.1 \cdot 11 = 0.9
+$$
+
+**Iteration 1:**
+
+$$
+\frac{\partial f}{\partial x}(2.2, 0.9) = 2(2.2) + 0.9 = 5.3
+$$
+
+$$
+\frac{\partial f}{\partial y}(2.2, 0.9) = 4(0.9) + 2.2 = 5.8
+$$
+
+Updates:
+
+$$
+x_2 = 2.2 - 0.1 \cdot 5.3 = 1.67 \\
+y_2 = 0.9 - 0.1 \cdot 5.8 = 0.32
+$$
+
+Continuing with the next iterations:
+
+| Iteration | $x_n$ | $y_n$ | $\frac{\partial f}{\partial x}$ | $\frac{\partial f}{\partial y}$ | Update Calculation | $x_{n+1}$ | $y_{n+1}$ |
+| --------- | ----- | ----- | ------------------------------- | ------------------------------- | ------------------ | --------- | --------- |
+| 0         | 3.00  | 2.00  | 8.00                            | 11.00                           | $x - 0.1(8), y - 0.1(11)$ | 2.20 | 0.90 |
+| 1         | 2.20  | 0.90  | 5.30                            | 5.80                            | $x - 0.1(5.3), y - 0.1(5.8)$ | 1.67 | 0.32 |
+| 2         | 1.67  | 0.32  | 3.66                            | 2.95                            | $x - 0.1(3.66), y - 0.1(2.95)$ | 1.304 | 0.025 |
+
+- **Convergence**:
+
+To find the minimum, we set both partial derivatives to zero:
+
+$$
+\frac{\partial f}{\partial x} = 2x + y = 0 \\
+\frac{\partial f}{\partial y} = 4y + x = 0
+$$
+
+From the first equation: $y = -2x$
+
+Substituting into the second: $4(-2x) + x = -8x + x = -7x = 0 \Rightarrow x = 0$
+
+Therefore: $y = 0$
+
+The function is **convex** (we can verify by checking the Hessian matrix is positive definite), and the minimum is achieved at:
+
+$$
+(x^*, y^*) = (0, 0)
+$$
+
+The iterations are clearly **converging toward** $(0, 0)$.
+
+**Note:** In multi-variable optimization, all parameters are updated **simultaneously** using their respective gradients. This is the foundation of training machine learning models where we have many weights to optimize.
+
+#### Python code
+
+```python
+import numpy as np
+
+def f(x, y):
+    """Objective function"""
+    return x**2 + 2*y**2 + x*y
+
+def grad_f(x, y):
+    """Gradient vector: [∂f/∂x, ∂f/∂y]"""
+    df_dx = 2*x + y
+    df_dy = 4*y + x
+    return np.array([df_dx, df_dy])
+
+# Initial parameters
+alpha = 0.1  # learning rate
+x0, y0 = 3, 2  # starting point
+iterations = 3
+
+# Store trajectory
+params = np.array([[x0, y0]])
+
+print(f"Starting point: (x, y) = ({x0}, {y0})\n")
+
+for n in range(iterations):
+    x_n, y_n = params[-1]
+    
+    # Compute gradient
+    grad = grad_f(x_n, y_n)
+    
+    # Update both parameters simultaneously
+    x_next = x_n - alpha * grad[0]
+    y_next = y_n - alpha * grad[1]
+    
+    params = np.vstack([params, [x_next, y_next]])
+    
+    print(f"Iteration {n}:")
+    print(f"  Current: (x, y) = ({x_n:.4f}, {y_n:.4f})")
+    print(f"  Gradient: (∂f/∂x, ∂f/∂y) = ({grad[0]:.4f}, {grad[1]:.4f})")
+    print(f"  Next: (x, y) = ({x_next:.4f}, {y_next:.4f})")
+    print(f"  f(x, y) = {f(x_n, y_n):.4f}\n")
+
+print(f"Final point after {iterations} iterations: ({params[-1][0]:.4f}, {params[-1][1]:.4f})")
+print(f"Converging toward the minimum at (0, 0)")
 ```
