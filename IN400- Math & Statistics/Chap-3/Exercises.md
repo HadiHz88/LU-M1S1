@@ -413,10 +413,7 @@ Compute the first **three iterations** and determine where it converges.
 For a multi-variable function, we compute the **partial derivatives** with respect to each variable:
 
 $$
-\frac{\partial f}{\partial x} = 2x + y
-$$
-
-$$
+\frac{\partial f}{\partial x} = 2x + y \\
 \frac{\partial f}{\partial y} = 4y + x
 $$
 
@@ -442,10 +439,7 @@ Or equivalently:
 **Iteration 0:**
 
 $$
-\frac{\partial f}{\partial x}(3, 2) = 2(3) + 2 = 8
-$$
-
-$$
+\frac{\partial f}{\partial x}(3, 2) = 2(3) + 2 = 8 \\
 \frac{\partial f}{\partial y}(3, 2) = 4(2) + 3 = 11
 $$
 
@@ -459,10 +453,7 @@ $$
 **Iteration 1:**
 
 $$
-\frac{\partial f}{\partial x}(2.2, 0.9) = 2(2.2) + 0.9 = 5.3
-$$
-
-$$
+\frac{\partial f}{\partial x}(2.2, 0.9) = 2(2.2) + 0.9 = 5.3 \\
 \frac{\partial f}{\partial y}(2.2, 0.9) = 4(0.9) + 2.2 = 5.8
 $$
 
