@@ -1,0 +1,758 @@
+[
+    {
+        "chapter": 1,
+        "quiz": [
+            {
+                "question": "What is the primary function of the 'Receive Window' field in the TCP header?",
+                "answerOptions": [
+                    {
+                        "text": "To indicate the number of bytes the receiver is willing to accept.",
+                        "isCorrect": true,
+                        "rationale": "This field is the core mechanism for flow control, allowing the receiver to tell the sender how much buffer space is available."
+                    },
+                    {
+                        "text": "To specify the sequence number of the next expected segment.",
+                        "isCorrect": false,
+                        "rationale": "The sequence number of the next expected byte, not segment, is communicated via the Acknowledgement Number field."
+                    },
+                    {
+                        "text": "To negotiate the Maximum Segment Size (MSS) for the connection.",
+                        "isCorrect": false,
+                        "rationale": "MSS negotiation is handled using the Options field within the TCP header, typically during connection setup."
+                    },
+                    {
+                        "text": "To provide error-checking for the entire TCP segment.",
+                        "isCorrect": false,
+                        "rationale": "Error-checking for the header and data is the responsibility of the Checksum field."
+                    }
+                ],
+                "hint": "Consider how a receiver prevents a fast sender from overwhelming it with data."
+            },
+            {
+                "question": "In the context of TCP, if a receiver sends an acknowledgement (ACK) with the value 950, what does this signify to the sender?",
+                "answerOptions": [
+                    {
+                        "text": "The receiver has successfully received all data bytes up to and including byte 949.",
+                        "isCorrect": true,
+                        "rationale": "TCP's cumulative acknowledgement system means the ACK number indicates the sequence number of the *next* byte the receiver is expecting."
+                    },
+                    {
+                        "text": "The receiver is requesting the retransmission of the segment starting at byte 950.",
+                        "isCorrect": false,
+                        "rationale": "While this might be the case if a gap is detected, the ACK itself simply confirms receipt up to a point, it is not an explicit retransmission request."
+                    },
+                    {
+                        "text": "The receiver has received a total of 950 segments during the connection.",
+                        "isCorrect": false,
+                        "rationale": "Acknowledgement numbers in TCP track the stream of bytes, not the count of individual segments."
+                    },
+                    {
+                        "text": "The segment with sequence number 950 has been received correctly.",
+                        "isCorrect": false,
+                        "rationale": "The ACK number confirms everything *before* it; it does not confirm the receipt of the segment starting with that number."
+                    }
+                ],
+                "hint": "Remember that TCP acknowledges the byte stream, not individual packets, and the ACK number points to the future."
+            },
+            {
+                "question": "What is the principal reason for TCP to use a randomised Initial Sequence Number (ISN) during the three-way handshake?",
+                "answerOptions": [
+                    {
+                        "text": "To prevent delayed packets from a previous connection being mistaken for valid data in a new connection.",
+                        "isCorrect": true,
+                        "rationale": "Randomising the ISN ensures that the sequence number space of a new connection does not overlap with stray packets from a previous, closed connection using the same ports."
+                    },
+                    {
+                        "text": "To ensure the server allocates sufficient buffer space for the connection.",
+                        "isCorrect": false,
+                        "rationale": "Buffer allocation is managed by the server upon receiving the initial SYN, but the value of the ISN itself does not determine the buffer size."
+                    },
+                    {
+                        "text": "To act as a unique identifier for the connection, similar to a port number.",
+                        "isCorrect": false,
+                        "rationale": "A connection is uniquely identified by the tuple of (source IP, source port, destination IP, destination port), not the initial sequence number."
+                    },
+                    {
+                        "text": "To synchronise the system clocks of the client and server.",
+                        "isCorrect": false,
+                        "rationale": "While TCP has options for timestamps, the primary purpose of the ISN is not for clock synchronisation."
+                    }
+                ],
+                "hint": "Think about what might happen if two consecutive connections between the same client and server both started their numbering at zero."
+            },
+            {
+                "question": "Which flag in the TCP header is used by a host to refuse an incoming connection request because no application is listening on the destination port?",
+                "answerOptions": [
+                    {
+                        "text": "FIN",
+                        "isCorrect": false,
+                        "rationale": "The FIN flag is used to gracefully terminate one direction of data flow in an already established connection."
+                    },
+                    {
+                        "text": "SYN",
+                        "isCorrect": false,
+                        "rationale": "The SYN flag is used to initiate a connection, not to refuse one."
+                    },
+                    {
+                        "text": "Congestion control uses the 'Receive Window' field, whereas flow control uses duplicate ACKs.",
+                        "isCorrect": false,
+                        "rationale": "This is the reverse; flow control uses the 'Receive Window' field, while congestion control algorithms react to signals like timeouts and duplicate ACKs."
+                    },
+                    {
+                        "text": "There is no functional difference; they are two terms for the same process.",
+                        "isCorrect": false,
+                        "rationale": "Although related, they solve two distinct problems: one concerning the network path and the other concerning the endpoint's capacity."
+                    }
+                ],
+                "hint": "Consider the two potential bottlenecks in data transfer: the path and the destination."
+            },
+            {
+                "question": "A TCP sender transmits a segment with Seq=92 containing 8 bytes of data. It then receives a retransmitted segment with the same sequence number. If the receiver's next expected byte is 100, what action will it take?",
+                "answerOptions": [
+                    {
+                        "text": "Process the data and send an ACK for 100.",
+                        "isCorrect": false,
+                        "rationale": "The receiver has already processed this data, as indicated by its expectation of byte 100. Reprocessing it could lead to data duplication."
+                    },
+                    {
+                        "text": "Send a RST segment to reset the connection.",
+                        "isCorrect": false,
+                        "rationale": "Receiving duplicate data is an expected occurrence in TCP (e.g., due to a lost ACK) and is not considered an error condition that warrants a connection reset."
+                    },
+                    {
+                        "text": "Discard the duplicate segment.",
+                        "isCorrect": true,
+                        "rationale": "Since the sequence number 92 is less than the next expected sequence number (100), the receiver recognises this as a duplicate of data it has already received and simply discards it."
+                    },
+                    {
+                        "text": "Buffer the segment and wait for the segment starting at 100.",
+                        "isCorrect": false,
+                        "rationale": "There is no need to buffer this segment as the data it contains has already been successfully received and acknowledged."
+                    }
+                ],
+                "hint": "How does a TCP receiver handle data it has already seen and acknowledged?"
+            },
+            {
+                "question": "The Maximum Segment Size (MSS) determines the maximum amount of what that can be placed in a TCP segment?",
+                "answerOptions": [
+                    {
+                        "text": "Total data, including TCP and IP headers.",
+                        "isCorrect": false,
+                        "rationale": "MSS is specifically about the payload, not the total size of the packet including all headers."
+                    },
+                    {
+                        "text": "Application data.",
+                        "isCorrect": true,
+                        "rationale": "The MSS defines the largest block of data the application layer can pass to TCP to be encapsulated in a single segment, excluding TCP headers."
+                    },
+                    {
+                        "text": "TCP header options.",
+                        "isCorrect": false,
+                        "rationale": "Header options have a separate size limit, constrained by the 4-bit Header Length field."
+                    },
+                    {
+                        "text": "Data that can fit into a single IP packet.",
+                        "isCorrect": false,
+                        "rationale": "This describes the MTU (Maximum Transmission Unit). MSS is derived from MTU by subtracting the size of the TCP and IP headers."
+                    }
+                ],
+                "hint": "Think about what is being 'segmented' from the application's perspective."
+            },
+            {
+                "question": "In the TCP three-way handshake, which message may be the first to contain application data?",
+                "answerOptions": [
+                    {
+                        "text": "The initial SYN from the client.",
+                        "isCorrect": false,
+                        "rationale": "The first segment (SYN) is purely for connection setup and synchronising sequence numbers; it holds no payload."
+                    },
+                    {
+                        "text": "The SYN/ACK from the server.",
+                        "isCorrect": false,
+                        "rationale": "The server's response also carries no application data; it allocates resources and acknowledges the client's SYN."
+                    },
+                    {
+                        "text": "The final ACK from the client.",
+                        "isCorrect": true,
+                        "rationale": "After receiving the SYN/ACK, the connection is considered established from the client's side, and it can piggyback data onto its final ACK segment."
+                    },
+                    {
+                        "text": "No message in the handshake can contain application data.",
+                        "isCorrect": false,
+                        "rationale": "Data transfer can begin as soon as the connection is established, which for the client, happens upon receiving the server's SYN/ACK."
+                    }
+                ],
+                "hint": "Consider at which point one of the parties knows for certain that a bi-directional connection is possible."
+            }
+        ]
+    },
+    {
+        "chapter": 2,
+        "quiz": [
+            {
+                "question": "Which of the following best describes 'jitter' in the context of network quality?",
+                "answerOptions": [
+                    {
+                        "text": "The total time it takes for a packet to travel from source to destination.",
+                        "isCorrect": false,
+                        "rationale": "This describes network latency, or one-way end-to-end delay, not the variation in that delay."
+                    },
+                    {
+                        "text": "The loss of packets due to network congestion.",
+                        "isCorrect": false,
+                        "rationale": "This describes packet loss, which is a separate quality issue, although it can be caused by the same underlying congestion that creates jitter."
+                    },
+                    {
+                        "text": "The difference in the latency between packets in a single flow.",
+                        "isCorrect": true,
+                        "rationale": "This is the precise definition of jitter, or delay variation, which negatively impacts real-time applications like voice and video."
+                    },
+                    {
+                        "text": "The time it takes for a networking device to place a packet onto an output queue.",
+                        "isCorrect": false,
+                        "rationale": "This defines processing delay, which is a fixed component of overall latency, not the variation between packets."
+                    }
+                ],
+                "hint": "This quality issue relates to the consistency of packet arrival times, not the delay itself."
+            },
+            {
+                "question": "In the Differentiated Services (DiffServ) architecture, what is the primary function of a core router?",
+                "answerOptions": [
+                    {
+                        "text": "To classify individual traffic flows and mark packets with a DSCP value.",
+                        "isCorrect": false,
+                        "rationale": "This complex, per-flow management task is performed by edge routers, not core routers, to maintain scalability."
+                    },
+                    {
+                        "text": "To apply buffering and scheduling based on the Per-Hop Behavior (PHB) indicated by a packet's marking.",
+                        "isCorrect": true,
+                        "rationale": "Core routers perform simple, per-class traffic management by forwarding packets according to the PHB defined by the existing DSCP mark."
+                    },
+                    {
+                        "text": "To negotiate resource reservations using a signalling protocol like RSVP.",
+                        "isCorrect": false,
+                        "rationale": "Resource reservation via signalling is a characteristic of the IntServ model, not the DiffServ model."
+                    },
+                    {
+                        "text": "To provide a best-effort delivery service for all traffic regardless of marking.",
+                        "isCorrect": false,
+                        "rationale": "While best-effort is a type of service, the purpose of a DiffServ core router is specifically to differentiate service based on packet markings."
+                    }
+                ],
+                "hint": "Think about where the simple, high-speed functions happen versus the more complex, stateful ones in the DiffServ model."
+            },
+            {
+                "question": "Which IntServ service model is designed for hard real-time applications by providing a mathematically guaranteed end-to-end delay bound?",
+                "answerOptions": [
+                    {
+                        "text": "Controlled Load Service",
+                        "isCorrect": false,
+                        "rationale": "Controlled Load service aims to emulate a lightly loaded network but does not provide strict, mathematical guarantees on delay."
+                    },
+                    {
+                        "text": "Assured Forwarding Service",
+                        "isCorrect": false,
+                        "rationale": "Assured Forwarding is a Per-Hop Behavior (PHB) within the DiffServ model, not a service model in IntServ."
+                    },
+                    {
+                        "text": "Best Effort Service",
+                        "isCorrect": false,
+                        "rationale": "Best Effort is the default service model that provides no guarantees for delay, loss, or jitter."
+                    },
+                    {
+                        "text": "Guaranteed Service",
+                        "isCorrect": true,
+                        "rationale": "Guaranteed Service is specifically designed for applications requiring strict bounds on delay and jitter, making it suitable for hard real-time needs."
+                    }
+                ],
+                "hint": "Consider which service name implies a strict, unbreakable promise from the network."
+            },
+            {
+                "question": "According to the QoS principles discussed, what is the purpose of 'Call Admission'?",
+                "answerOptions": [
+                    {
+                        "text": "To mark packets so that routers can distinguish between different classes of traffic.",
+                        "isCorrect": false,
+                        "rationale": "This describes packet classification and marking, which is another of the four QoS principles."
+                    },
+                    {
+                        "text": "To ensure that a traffic flow adheres to its declared bandwidth allocation, protecting other flows.",
+                        "isCorrect": false,
+                        "rationale": "This function is known as policing, which is part of the 'Isolation' principle."
+                    },
+                    {
+                        "text": "To prevet the network frmo accepting new traffic flow if it connot meet the flow's declared needs.",
+                        "isCorrect": true,
+                        "rationale": "This might result from incorrectly adding the initial bucket size and the rate ($10 + 5$) without considering the time interval."
+                    },
+                    {
+                        "text": "20",
+                        "isCorrect": true,
+                        "rationale": "The maximum number of packets admitted over an interval 't' is given by the formula $r \\cdot t + b$. In this case, it is $(5 \\times 2) + 10 = 20$."
+                    },
+                    {
+                        "text": "25",
+                        "isCorrect": false,
+                        "rationale": "This calculation seems to incorrectly multiply the bucket size by the time and add the rate, or some other misapplication of the formula."
+                    }
+                ],
+                "hint": "The formula for the total number of packets sent over time 't' includes both the tokens generated during that time and the initial tokens available in the bucket."
+            },
+            {
+                "question": "Which scheduling policy provides a weighted amount of service to multiple classes of traffic in a cyclical manner?",
+                "answerOptions": [
+                    {
+                        "text": "FIFO (First-In, First-Out)",
+                        "isCorrect": false,
+                        "rationale": "FIFO scheduling processes packets in the order they arrive without any differentiation between traffic classes."
+                    },
+                    {
+                        "text": "Priority Scheduling",
+                        "isCorrect": false,
+                        "rationale": "Priority scheduling always transmits packets from the highest-priority queue, which can starve lower-priority queues, and doesn't use weights."
+                    },
+                    {
+                        "text": "Tail Drop",
+                        "isCorrect": false,
+                        "rationale": "Tail drop is a discard policy used when a queue is full, not a scheduling policy for sending packets."
+                    },
+                    {
+                        "text": "Weighted Fair Queuing (WFQ)",
+                        "isCorrect": true,
+                        "rationale": "WFQ is a form of 'Generalized Round Robin' that allocates a proportional, or weighted, share of bandwidth to different traffic classes."
+                    }
+                ],
+                "hint": "This policy ensures that no single class of traffic is completely starved of bandwidth, aiming for fairness based on configured weights."
+            },
+            {
+                "question": "In the RSVP signalling process, which message is sent from the receiver towards the sender to request network resources?",
+                "answerOptions": [
+                    {
+                        "text": "PATH Message",
+                        "isCorrect": false,
+                        "rationale": "The PATH message is sent downstream from the sender to the receiver, carrying the TSpec and establishing the path for the reverse communication."
+                    },
+                    {
+                        "text": "RESV Message",
+                        "isCorrect": true,
+                        "rationale": "After receiving a PATH message, the receiver sends a RESV (Reservation) message upstream to actually reserve the resources along the path."
+                    },
+                    {
+                        "text": "TSpec Message",
+                        "isCorrect": false,
+                        "rationale": "TSpec is not a type of message itself, but rather the information describing traffic characteristics that is carried within the PATH message."
+                    },
+                    {
+                        "text": "PATH TEAR Message",
+                        "isCorrect": false,
+                        "rationale": "A PATH TEAR message is used to explicitly remove reservations and state information for a flow."
+                    }
+                ],
+                "hint": "Consider the direction in which the actual reservation request must travel to set up the guarantee."
+            },
+            {
+                "question": "Which of the following is a key reason to implement traffic shaping instead of traffic policing?",
+                "answerOptions": [
+                    {
+                        "text": "Shaping is better for real-time traffic because it introduces less delay.",
+                        "isCorrect": false,
+                        "rationale": "Shaping relies on queueing and delaying excess packets, which introduces jitter and is therefore not recommended for real-time traffic."
+                    },
+                    {
+                        "text": "Shaping immediately drops low-priority packets to protect high-priority traffic.",
+                        "isCorrect": false,
+                        "rationale": "Dropping excess packets is the characteristic behaviour of policing, not shaping."
+                    },
+                    {
+                        "text": "Shaping can delay packets instead of dropping them, which is useful for traffic that bursts.",
+                        "isCorrect": true,
+                        "rationale": "By buffering and delaying packets that exceed the configured rate, shaping smooths out traffic bursts without causing the retransmissions that would result from dropping packets."
+                    },
+                    {
+                        "text": "Shaping requires less memory and processing power than policing.",
+                        "isCorrect": false,
+                        "rationale": "Shaping requires buffer memory to queue the delayed packets, often making it more resource-intensive than policing."
+                    }
+                ],
+                "hint": "Think about whether it's better to smooth out traffic by delaying it or to enforce limits by discarding it."
+            }
+        ]
+    },
+    {
+        "chapter": 3,
+        "quiz": [
+            {
+                "question": "What is the fundamental principle of Network Function Virtualization (NFV) compared to traditional network architectures?",
+                "answerOptions": [
+                    {
+                        "text": "It replaces physical network hardware with software running on commodity servers.",
+                        "isCorrect": true,
+                        "rationale": "This statement accurately describes the core concept of NFV, which decouples network functions from proprietary hardware appliances."
+                    },
+                    {
+                        "text": "It increases network speed by using fibre-optic cables exclusively.",
+                        "isCorrect": false,
+                        "rationale": "While NFV can be used in fibre-optic networks, its primary purpose is virtualization, not the physical transmission medium itself."
+                    },
+                    {
+                        "text": "It consolidates all network functions into a single, powerful hardware appliance.",
+                        "isCorrect": false,
+                        "rationale": "This is the opposite of the NFV principle, which aims to move away from single, proprietary hardware appliances towards distributed software."
+                    },
+                    {
+                        "text": "It mandates the use of specific hardware vendors to ensure compatibility.",
+                        "isCorrect": false,
+                        "rationale": "A key benefit of NFV is to reduce dependency on proprietary hardware and specific vendors by using commercial off-the-shelf (COTS) servers."
+                    }
+                ],
+                "hint": "Consider the shift from physical, specialised boxes to more generic computing platforms."
+            },
+            {
+                "question": "According to the diagrams comparing service provider cycles, implementing a new idea in a traditional, hardware-based network typically takes how long?",
+                "answerOptions": [
+                    {
+                        "text": "2-6 weeks",
+                        "isCorrect": false,
+                        "rationale": "This timeframe is significantly shorter than what is required for the traditional procure-design-integrate-deploy cycle shown in the diagram."
+                    },
+                    {
+                        "text": "2-6 months",
+                        "isCorrect": false,
+                        "rationale": "This faster timeframe is associated with the more agile 'Service Providers Cycle' enabled by virtualization, not the traditional model."
+                    },
+                    {
+                        "text": "2-6 years",
+                        "isCorrect": true,
+                        "rationale": "The diagram explicitly illustrates that the cycle involving Telco Operators, Equipment Vendors, and SDOs for new hardware-based functions takes this extended period."
+                    },
+                    {
+                        "text": "More than 10 years",
+                        "isCorrect": false,
+                        "rationale": "While lengthy, the diagram suggests a typical upper limit of 6 years for the standardisation and implementation process, making this option an exaggeration."
+                    }
+                ],
+                "hint": "Look at the diagram that involves Telco Operators, Equipment Vendors, and Standardisation Bodies (SDOs)."
+            },
+            {
+                "question": "Within the ETSI NFV architectural framework, which component is referred to as the 'central brain' and is responsible for managing the end-to-end lifecycle of Network Services?",
+                "answerOptions": [
+                    {
+                        "text": "VNF Manager (VNFM)",
+                        "isCorrect": false,
+                        "rationale": "The VNFM focuses on the lifecycle of individual Virtualized Network Functions, not the entire chain or service."
+                    },
+                    {
+                        "text": "NFV Orchestrator (NFVO)",
+                        "isCorrect": true,
+                        "rationale": "The NFVO has a global view and coordinates all resources and VNFMs to instantiate, manage, and terminate complete Network Services."
+                    },
+                    {
+                        "text": "Virtualized Infrastructure Manager (VIM)",
+                        "isCorrect": false,
+                        "rationale": "The VIM manages the underlying hardware and virtual resources (compute, storage, network) but does not manage the services themselves."
+                    },
+                    {
+                        "text": "Operations Support System (OSS)",
+                        "isCorrect": false,
+                        "rationale": "The OSS requests services from the NFV environment and manages network operations at a high level, but the NFVO is the core component for service orchestration within the NFV framework."
+                    }
+                ],
+                "hint": "Think about the component that acts like the conductor of an orchestra, coordinating all the different parts of a service."
+            },
+            {
+                "question": "If a policy states, 'If CPU usage on a virtual firewall exceeds 80% for 5 minutes, scale out', which component is directly responsible for executing this scaling action on the VNF instance?",
+                "answerOptions": [
+                    {
+                        "text": "NFV Orchestrator (NFVO)",
+                        "isCorrect": false,
+                        "rationale": "The NFVO may set the high-level policy, but it delegates the actual execution of VNF-specific lifecycle actions to another component."
+                    },
+                    {
+                        "text": "Element Managemen… complex configurations in the example."
+                    },
+                    {
+                        "text": "NETCONF",
+                        "isCorrect": true,
+                        "rationale": "The example explicitly shows an XML-based `<edit-config>` message, which is characteristic of NETCONF, used for robust network device configuration."
+                    }
+                ],
+                "hint": "Look for the protocol associated with structured, XML-based configuration management for network devices."
+            },
+            {
+                "question": "What is a primary advantage of decoupling software from hardware vendors, as enabled by NFV?",
+                "answerOptions": [
+                    {
+                        "text": "It guarantees lower latency for all network services.",
+                        "isCorrect": false,
+                        "rationale": "While performance is crucial, NFV can introduce latency if not implemented carefully; decoupling itself does not guarantee a reduction."
+                    },
+                    {
+                        "text": "It ensures that only one vendor can supply the entire network stack.",
+                        "isCorrect": false,
+                        "rationale": "This is contrary to the goal; decoupling enables a multi-vendor environment and prevents vendor lock-in."
+                    },
+                    {
+                        "text": "It enhances innovation and allows for more rapid deployment of new services.",
+                        "isCorrect": true,
+                        "rationale": "By breaking the dependency on hardware-specific development cycles, service providers can introduce new software-based functions and services much more quickly."
+                    },
+                    {
+                        "text": "It reduces the need for network management and orchestration.",
+                        "isCorrect": false,
+                        "rationale": "Decoupling actually increases the complexity, making powerful management and orchestration (MANO) frameworks essential for operation."
+                    }
+                ],
+                "hint": "Consider how separating software development from hardware manufacturing affects the speed of introducing new features."
+            },
+            {
+                "question": "Technologies such as SR-IOV and DPDK are mentioned in the context of the NFVI. What is their main purpose in an NFV environment?",
+                "answerOptions": [
+                    {
+                        "text": "To manage the lifecycle of VNFs, including scaling and healing.",
+                        "isCorrect": false,
+                        "rationale": "Lifecycle management is a function of the VNF Manager, which operates at a higher layer of the architecture."
+                    },
+                    {
+                        "text": "To automate the billing and customer relationship management processes.",
+                        "isCorrect": false,
+                        "rationale": "These are BSS functions and are unrelated to the performance technologies used within the infrastructure layer."
+                    },
+                    {
+                        "text": "To accelerate packet processing performance and reduce latency for VNFs.",
+                        "isCorrect": true,
+                        "rationale": "Both DPDK (bypassing the kernel network stack) and SR-IOV (direct hardware access) are performance-enhancing technologies critical for carrier-grade VNFs."
+                    },
+                    {
+                        "text": "To provide standardised blueprints for describing network services.",
+                        "isCorrect": false,
+                        "rationale": "Standardised blueprints, such as Network Service Descriptors (NSDs), are part of the orchestration layer, not the infrastructure execution environment."
+                    }
+                ],
+                "hint": "These technologies address the performance challenges of processing high-speed network traffic in a virtualized environment."
+            },
+            {
+                "question": "Using the 'Power Grid' analogy, which NFV component is compared to the 'City Planning Department' that approves new developments and coordinates overall infrastructure?",
+                "answerOptions": [
+                    {
+                        "text": "VNF Manager (VNFM)",
+                        "isCorrect": false,
+                        "rationale": "The VNFM is likened to an 'Appliance Specialist/Technician' who deals with individual appliances (VNFs), not city-wide planning."
+                    },
+                    {
+                        "text": "Virtualized Infrastructure Manager (VIM)",
+                        "isCorrect": false,
+                        "rationale": "The VIM is compared to the 'Local Power Station Manager & Grid Operator' who manages the immediate flow of electricity, not the high-level planning."
+                    },
+                    {
+                        "text": "NFV Orchestrator (NFVO)",
+                        "isCorrect": true,
+                        "rationale": "This analogy fits the NFVO's role of high-level planning and coordinating all the different components to deliver a new end-to-end service (a 'housing development')."
+                    },
+                    {
+                        "text": "NFV Infrastructure (NFVI)",
+                        "isCorrect": false,
+                        "rationale": "The NFVI is compared to the physical 'Power Grid Infrastructure' itself (power plants, transmission lines), not the department that plans it."
+                    }
+                ],
+                "hint": "This component doesn't manage individual appliances but rather oversees the entire project of delivering a new service."
+            }
+        ]
+    },
+    {
+        "chapter": 0,
+        "quiz": [
+            {
+                "question": "Which of the following IPv6 address representations correctly applies the rule for omitting leading zeros to the hextet '07b0'?",
+                "answerOptions": [
+                    {
+                        "text": "7b",
+                        "isCorrect": false,
+                        "rationale": "This is incorrect because it removes a trailing zero, which is not permitted by the rule and changes the value of the hextet."
+                    },
+                    {
+                        "text": "7b0",
+                        "isCorrect": true,
+                        "rationale": "This representation correctly removes the leading zero while preserving the significant trailing zero, following the specified compression rule."
+                    },
+                    {
+                        "text": "07b0",
+                        "isCorrect": false,
+                        "rationale": "This represents the preferred format before any compression rules have been applied."
+                    },
+                    {
+                        "text": "70b0",
+                        "isCorrect": false,
+                        "rationale": "This incorrectly removes a character from the middle of the hextet, which is not part of the leading zero rule."
+                    }
+                ],
+                "hint": "The rule is specific about omitting zeros only from the beginning of a 16-bit hextet."
+            },
+            {
+                "question": "According to the provided material, what is the primary limitation of IPv4 that necessitated the creation of IPv6?",
+                "answerOptions": [
+                    {
+                        "text": "The variable length of the IPv4 header caused slow processing.",
+                        "isCorrect": false,
+                        "rationale": "While IPv6 did simplify the header to a fixed length for faster processing, this was an enhancement, not the primary driver for its creation."
+                    },
+                    {
+                        "text": "IPv4 is running out of available addresses.",
+                        "isCorrect": true,
+                        "rationale": "The document highlights the exhaustion of the IPv4 address space as the core reason for the transition to IPv6's much larger 128-bit address space."
+                    },
+                    {
+                        "text": "IPv4 lacks support for Quality of Service (QoS).",
+                        "isCorrect": false,
+                        "rationale": "IPv4 does support QoS via the Type of Service (ToS) field, although IPv6 enhances this capability with the Traffic Class and Flow Label fields."
+                    },
+                    {
+                        "text": "The lack of a mandatory security feature in IPv4.",
+                        "isCorrect": false,
+                        "rationale": "While IPSec is a key feature of IPv6, it was also developed for IPv4; the primary motivation was the address space limitation."
+                    }
+                ],
+                "hint": "Consider the map on the first page showing 'exhaustion dates' around the world."
+            },
+            {
+                "question": "Which statement accurately describes the rule for using a double colon (::) to compress an IPv6 address?",
+                "answerOptions": [
+                    {
+                        "text": "It can be used to replace any single hextet that is '0000'.",
+                        "isCorrect": false,
+                        "rationale": "The double colon is more powerful; it replaces a single, contiguous string of one or more all-zero hextets, not just one."
+                    },
+                    {
+                        "text": "It can be used multiple times in an address to replace separate blocks of zeros.",
+                        "isCorrect": false,
+                        "rationale": "Using the double colon more than once would make it impossible to determine the exact number of zero hextets it represents, creating an ambiguous address."
+                    },
+                    {
+                        "text": "It can replace only one contiguous string of all-zero hextets within an address.",
+                        "isCorrect": true,
+                        "rationale": "The rule states that the double colon can be used only once to replace the longest single, continuous string of 16-bit segments consisting of all zeros."
+                    },
+                    {
+                        "text": "It can replace both leading and trailing zeros within any hextet.",
+                        "isCorrect": false,
+                        "rationale": "The double colon operates on entire 16-bit hextets, not on individual zeros within them."
+                    }
+                ],
+                "hint": "Think about how a router would reconstruct the full address. Could it do so if this notation was used more than once?"
+            },
+            {
+                "question": "An organisation wants to send a single packet that will be delivered to every device on its local network. Since IPv6 does not have a broadcast address, what type of address would it use?",
+                "answerOptions": [
+                    {
+                        "text": "Unicast",
+                        "isCorrect": false,
+                        "rationale": "A unicast address is destined for a single, specific interface, not all devices on a network."
+                    },
+                    {
+                        "text": "Anycast",
+                        "isCorrect": false,
+                        "rationale": "An anycast address sends the packet to only the nearest of a group of devices, not all of them."
+                    },
+                    {
+                        "text": "All-nodes Multicast",
+                        "isCorrect": true,
+                        "rationale": "The source material explicitly states that an all-nodes …t and is crucial for identifying the packet as IPv6 (value of 6)."
+                    },
+                    {
+                        "text": "Header Checksum",
+                        "isCorrect": true,
+                        "rationale": "This field was eliminated to speed up router processing, with reliance placed on error checking at other network layers."
+                    },
+                    {
+                        "text": "Source Address",
+                        "isCorrect": false,
+                        "rationale": "The Source Address is a fundamental field that was expanded to 128 bits in IPv6."
+                    },
+                    {
+                        "text": "Hop Limit",
+                        "isCorrect": false,
+                        "rationale": "The Hop Limit field exists in IPv6 and serves the same purpose as the Time to Live (TTL) field in IPv4."
+                    }
+                ],
+                "hint": "Consider which function could be offloaded to other layers (like the transport or data link layer) to make routing faster."
+            },
+            {
+                "question": "The 8-bit Traffic Class field in an IPv6 header is used for Quality of Service and is comprised of two sub-fields. What are they?",
+                "answerOptions": [
+                    {
+                        "text": "A 4-bit Type of Service (ToS) and a 4-bit Priority Code (PC)",
+                        "isCorrect": false,
+                        "rationale": "Type of Service is the name of the equivalent field in IPv4, not a sub-field within IPv6's Traffic Class."
+                    },
+                    {
+                        "text": "A 6-bit Differentiated Services Code Point (DSCP) and a 2-bit Explicit Congestion Notification (ECN)",
+                        "isCorrect": true,
+                        "rationale": "The source material specifies that the Traffic Class field is divided into a 6-bit DSCP to define priority and a 2-bit ECN for congestion control."
+                    },
+                    {
+                        "text": "A 6-bit Flow Identifier (FID) and a 2-bit Error Correction (EC)",
+                        "isCorrect": false,
+                        "rationale": "The Flow Label is a separate, larger field in the IPv6 header, not a component of the Traffic Class field."
+                    },
+                    {
+                        "text": "A 7-bit Packet Priority (PP) and a 1-bit Congestion Flag (CF)",
+                        "isCorrect": false,
+                        "rationale": "These are not the correct technical terms or bit allocations for the sub-fields defined for the Traffic Class."
+                    }
+                ],
+                "hint": "This field is used to define packet priority and manage network traffic flow."
+            },
+            {
+                "question": "What is the primary function of the 'Flow Label' field within the IPv6 header?",
+                "answerOptions": [
+                    {
+                        "text": "To ensure packets arrive in the correct order at the destination.",
+                        "isCorrect": false,
+                        "rationale": "Packet ordering is a function handled by transport layer protocols like TCP, not the IP header."
+                    },
+                    {
+                        "text": "To identify packets belonging to the same sequence that require specific QoS handling.",
+                        "isCorrect": true,
+                        "rationale": "The Flow Label allows routers to recognise a sequence of packets as a single flow, enabling consistent, per-flow QoS without deep packet inspection."
+                    },
+                    {
+                        "text": "To count the number of hops a packet takes, preventing routing loops.",
+                        "isCorrect": false,
+                        "rationale": "This function is performed by the Hop Limit field."
+                    },
+                    {
+                        "text": "To provide a unique identifier for packet fragmentation and reassembly.",
+                        "isCorrect": false,
+                        "rationale": "Fragmentation fields were removed from the main IPv6 header to simplify router processing."
+                    }
+                ],
+                "hint": "This field works together with the Traffic Class field to help reserve resources for applications like VoIP or video streaming."
+            },
+            {
+                "question": "A packet is sent to an IPv6 unicast address. How will the network handle this packet?",
+                "answerOptions": [
+                    {
+                        "text": "It will be delivered to all interfaces on the local network.",
+                        "isCorrect": false,
+                        "rationale": "This describes the functionality of an all-nodes multicast address, not a unicast address."
+                    },
+                    {
+                        "text": "It will be delivered to the single interface identified by that address.",
+                        "isCorrect": true,
+                        "rationale": "A unicast address provides a unique 'one-to-one' mapping to a single interface on an IPv6-enabled device."
+                    },
+                    {
+                        "text": "It will be delivered to the nearest interface in a group identified by that address.",
+                        "isCorrect": false,
+                        "rationale": "This describes the behaviour of an anycast address."
+                    },
+                    {
+                        "text": "It will be delivered to multiple interfaces that have subscribed to that address group.",
+                        "isCorrect": false,
+                        "rationale": "This describes the behaviour of a multicast address."
+                    }
+                ],
+                "hint": "Consider the topology description for this address type: 'One to One'."
+            }
+        ]
+    }
+]

@@ -1,1097 +1,1073 @@
 [
   {
     "chapter": 1,
-    "question": "Which deployment model combines public cloud, private cloud, and on-premises infrastructure?",
-    "options": ["Public Cloud", "Community Cloud", "Hybrid Cloud", "Federated Cloud"],
-    "correct": 2,
-    "explanation": "Hybrid Cloud combines public, private, and on-premises infrastructure, enabling cloud bursting and flexible workload placement."
-  },
-  {
-    "chapter": 1,
-    "question": "In which service model does the customer manage operating systems, applications, and data?",
-    "options": ["SaaS", "PaaS", "IaaS", "FaaS"],
-    "correct": 2,
-    "explanation": "In IaaS, customers manage OS, applications, and data, while the provider manages hardware, virtualization, storage, and networking."
-  },
-  {
-    "chapter": 1,
-    "question": "What distinguishes elasticity from scalability in cloud computing?",
-    "options": [
-      "Elasticity is manual; scalability is automatic",
-      "Elasticity dynamically adjusts resources; scalability handles growing workloads",
-      "They are the same concept",
-      "Elasticity only applies to storage"
-    ],
-    "correct": 1,
-    "explanation": "Scalability handles growing workloads by adding resources. Elasticity dynamically adjusts resources in response to changing demands, including scaling down."
-  },
-  {
-    "chapter": 1,
-    "question": "Which computing paradigm is the direct precursor to cloud's pay-per-use billing model?",
-    "options": ["Grid Computing", "Cluster Computing", "Utility Computing", "Parallel Computing"],
-    "correct": 2,
-    "explanation": "Utility Computing introduced service provisioning based on consumption (pay-per-use), metered like electricity, which directly influenced cloud billing models."
-  },
-  {
-    "chapter": 1,
-    "question": "What are the two components of the future of cloud computing mentioned in the course?",
-    "options": [
-      "Intelligent Cloud and Quantum Computing",
-      "Intelligent Edge and Intelligent Cloud",
-      "Edge Computing and Fog Computing",
-      "Distributed Cloud and Multi-Cloud"
-    ],
-    "correct": 1,
-    "explanation": "The future combines Intelligent Edge (processing close to users/devices) with Intelligent Cloud (AI-powered centralized services)."
-  },
-  {
-    "chapter": 1,
-    "question": "Which SLA component specifies the expected service quality with metrics like uptime guarantees?",
-    "options": ["Accountability", "Penalties", "Performance Metrics", "Warranties"],
-    "correct": 2,
-    "explanation": "Performance Metrics in SLAs specify expected service quality, including uptime (e.g., 99.95%), response time, and throughput."
+    "quiz": [
+      {
+        "question": "Which deployment model combines public cloud, private cloud, and on-premises infrastructure?",
+        "answerOptions": [
+          {
+            "text": "Public Cloud",
+            "isCorrect": false,
+            "rationale": "Public cloud resources are owned and operated by a third-party provider and shared across multiple organizations."
+          },
+          {
+            "text": "Community Cloud",
+            "isCorrect": false,
+            "rationale": "Community cloud is shared by several organizations with common concerns, not necessarily a mix of public and private."
+          },
+          {
+            "text": "Hybrid Cloud",
+            "isCorrect": true,
+            "rationale": "Hybrid Cloud explicitly connects public and private clouds (including on-premises), allowing data and applications to be shared between them."
+          },
+          {
+            "text": "Federated Cloud",
+            "isCorrect": false,
+            "rationale": "Federated cloud refers to the amalgamation of multiple cloud providers, but 'Hybrid' is the standard term for the specific mix of public/private/on-prem."
+          }
+        ],
+        "hint": "Think of a model that bridges internal data centers with external providers to allow for 'bursting'."
+      },
+      {
+        "chapter": 1,
+        "question": "What is 'Cloud Bursting' in the context of a Hybrid Cloud?",
+        "answerOptions": [
+          {
+            "text": "A security breach in the cloud",
+            "isCorrect": false,
+            "rationale": "This describes a vulnerability or attack, not a deployment strategy."
+          },
+          {
+            "text": "The process of deleting data to save space",
+            "isCorrect": false,
+            "rationale": "Deleting data is part of storage management or lifecycle policies, unrelated to 'bursting'."
+          },
+          {
+            "text": "Scaling workloads from a private cloud to a public cloud during demand spikes",
+            "isCorrect": true,
+            "rationale": "Cloud bursting allows an application to run in a private cloud and 'burst' into a public cloud only when demand increases."
+          },
+          {
+            "text": "Moving all operations permanently to the public cloud",
+            "isCorrect": false,
+            "rationale": "This is a migration strategy, whereas bursting is a temporary, dynamic scaling technique."
+          }
+        ],
+        "hint": "Consider what happens when a private container overflows; where does the excess go?"
+      },
+      {
+        "question": "In which service model does the customer manage operating systems, applications, and data?",
+        "answerOptions": [
+          {
+            "text": "SaaS",
+            "isCorrect": false,
+            "rationale": "In SaaS, the provider manages everything including the application and OS."
+          },
+          {
+            "text": "PaaS",
+            "isCorrect": false,
+            "rationale": "In PaaS, the provider manages the OS and runtime; the customer manages applications and data."
+          },
+          {
+            "text": "IaaS",
+            "isCorrect": true,
+            "rationale": "IaaS provides raw computing resources. The customer is responsible for the OS, middleware, runtime, data, and applications."
+          },
+          {
+            "text": "FaaS",
+            "isCorrect": false,
+            "rationale": "In FaaS (Serverless), the provider manages the infrastructure and OS entirely; the user only provides code."
+          }
+        ],
+        "hint": "Which model offers the most control, similar to managing a virtual machine in a traditional data center?"
+      },
+      {
+        "question": "What distinguishes elasticity from scalability in cloud computing?",
+        "answerOptions": [
+          {
+            "text": "Elasticity is manual; scalability is automatic",
+            "isCorrect": false,
+            "rationale": "Both can be automated; the distinction lies in the direction and responsiveness of the resource change."
+          },
+          {
+            "text": "Elasticity dynamically adjusts resources; scalability handles growing workloads",
+            "isCorrect": true,
+            "rationale": "Scalability is the ability to handle growth (often by adding resources), while elasticity is the ability to shrink and grow dynamically to match current demand."
+          },
+          {
+            "text": "They are the same concept",
+            "isCorrect": false,
+            "rationale": "They are related but distinct: Scalability is about capacity for growth; Elasticity is about efficiency and matching supply to demand."
+          },
+          {
+            "text": "Elasticity only applies to storage",
+            "isCorrect": false,
+            "rationale": "Elasticity applies to compute, memory, and storage resources equally."
+          }
+        ],
+        "hint": "One concept implies a permanent increase to handle growth; the other implies a rubber-band-like ability to stretch and snap back."
+      },
+      {
+        "question": "Which computing paradigm is the direct precursor to cloud's pay-per-use billing model?",
+        "answerOptions": [
+          {
+            "text": "Grid Computing",
+            "isCorrect": false,
+            "rationale": "Grid computing focused on aggregating resources for large tasks, not specifically on the metered billing model."
+          },
+          {
+            "text": "Cluster Computing",
+            "isCorrect": false,
+            "rationale": "Cluster computing connects tightly coupled computers to work as a single unit, usually without a public pay-per-use model."
+          },
+          {
+            "text": "Utility Computing",
+            "isCorrect": true,
+            "rationale": "Utility computing introduced the concept of offering computing resources as a metered service, similar to electricity or water."
+          },
+          {
+            "text": "Parallel Computing",
+            "isCorrect": false,
+            "rationale": "Parallel computing is a method of computation, not a business or delivery model."
+          }
+        ],
+        "hint": "Think of how you pay for water and electricity at home."
+      },
+      {
+        "question": "According to Amdahl's Law, if 10% of a program is sequential (α = 0.10), what is the maximum theoretical speedup achievable with infinite processors?",
+        "answerOptions": [
+          {
+            "text": "5×",
+            "isCorrect": false,
+            "rationale": "5× would imply 20% sequential code (1/0.20)."
+          },
+          {
+            "text": "10×",
+            "isCorrect": true,
+            "rationale": "Amdahl's Law states Speedup = 1/α. With α=0.10, the max speedup is 1/0.10 = 10, regardless of processor count."
+          },
+          {
+            "text": "20×",
+            "isCorrect": false,
+            "rationale": "20× would require the sequential portion to be only 5%."
+          },
+          {
+            "text": "100×",
+            "isCorrect": false,
+            "rationale": "100× would require the sequential portion to be only 1%."
+          }
+        ],
+        "hint": "The speedup is limited by the part of the task that cannot be parallelized. Divide 1 by the decimal percentage of that sequential part."
+      },
+       {
+        "question": "What is the primary goal of Green Computing?",
+        "answerOptions": [
+            {
+                "text": "To increase the processing power of supercomputers",
+                "isCorrect": false,
+                "rationale": "Increasing power often contradicts green goals unless efficiency is also improved."
+            },
+            {
+                "text": "To reduce energy consumption, carbon emissions, and electronic waste",
+                "isCorrect": true,
+                "rationale": "Green computing focuses on environmentally sustainable practices in the design, manufacture, use, and disposal of computers."
+            },
+            {
+                "text": "To exclusively use solar power for data centers",
+                "isCorrect": false,
+                "rationale": "While renewable energy is part of it, Green Computing is broader and includes reducing e-waste and improving hardware efficiency."
+            },
+            {
+                "text": "To create biodegradable computer hardware",
+                "isCorrect": false,
+                "rationale": "This is a potential method, but not the overarching primary goal which encompasses energy and lifecycle management."
+            }
+        ],
+        "hint": "Think about the environmental impact of technology, specifically regarding energy and waste."
+      }
+    ]
   },
   {
     "chapter": 2,
-    "question": "In the 'Trap and Emulate' mechanism, where does the Guest OS run?",
-    "options": ["Kernel mode", "User mode", "Hypervisor mode", "Ring 0"],
-    "correct": 1,
-    "explanation": "In Trap and Emulate, the Guest OS runs in user mode (restricted privilege). Privileged instructions trap to the VMM, which runs in kernel mode."
-  },
-  {
-    "chapter": 2,
-    "question": "Which hypervisor type runs directly on hardware without a host OS?",
-    "options": ["Type 2 Hypervisor", "Hosted Hypervisor", "Type 1 Hypervisor", "Container Runtime"],
-    "correct": 2,
-    "explanation": "Type 1 (Bare Metal) hypervisors like Xen, VMware ESXi, and Hyper-V run directly on hardware, offering better performance for production environments."
-  },
-  {
-    "chapter": 2,
-    "question": "What is the primary purpose of Domain 0 in Xen architecture?",
-    "options": [
-      "Run unprivileged guest VMs",
-      "Manage hardware resources and allocate them to guest domains",
-      "Provide network isolation",
-      "Handle encryption"
-    ],
-    "correct": 1,
-    "explanation": "Domain 0 is a privileged guest OS that manages hardware resources, allocates them to Domain U (unprivileged guests), and has direct hardware access."
-  },
-  {
-    "chapter": 2,
-    "question": "Which storage type is accessed through APIs rather than a file system?",
-    "options": ["Volume Storage", "File Storage", "Object Storage", "Block Storage"],
-    "correct": 2,
-    "explanation": "Object Storage uses APIs for access (not file systems), storing files as objects with metadata and unique IDs. Examples: Amazon S3, Azure Blob."
-  },
-  {
-    "chapter": 2,
-    "question": "What is a snapshot in cloud storage?",
-    "options": [
-      "A compressed archive of files",
-      "An instant backup of a volume stored in object storage",
-      "A virtual network configuration",
-      "A security group rule"
-    ],
-    "correct": 1,
-    "explanation": "A snapshot is an instant backup of a volume that copies all storage blocks into a file in object storage for recovery and cloning purposes."
-  },
-  {
-    "chapter": 2,
-    "question": "In data dispersion, how many fragments must be retrieved to reconstruct a file if it was split into n fragments?",
-    "options": ["All n fragments", "m fragments where m < n", "n/2 fragments", "Exactly 3 fragments"],
-    "correct": 1,
-    "explanation": "Data dispersion requires only m out of n fragments (where m < n) to reconstruct the file, providing both security and availability."
-  },
-  {
-    "chapter": 2,
-    "question": "What is the main security benefit of the NoHype architecture?",
-    "options": [
-      "Better performance",
-      "Eliminates hypervisor as attack surface",
-      "Easier resource management",
-      "Lower cost"
-    ],
-    "correct": 1,
-    "explanation": "NoHype removes the hypervisor layer entirely, eliminating VM escape attacks and hypervisor vulnerabilities, though it sacrifices flexibility."
-  },
-  {
-    "chapter": 2,
-    "question": "Which encryption approach keeps the encryption engine in the instance but manages keys externally?",
-    "options": [
-      "Instance-managed encryption",
-      "Externally-managed encryption",
-      "Proxy encryption",
-      "Transparent encryption"
-    ],
-    "correct": 1,
-    "explanation": "Externally-managed encryption runs the encryption engine in the instance but stores keys in an external HSM or key management service."
+    "quiz": [
+      {
+        "question": "In the 'Trap and Emulate' mechanism, where does the Guest OS run?",
+        "answerOptions": [
+          {
+            "text": "Kernel mode",
+            "isCorrect": false,
+            "rationale": "The Guest OS thinks it is in kernel mode, but the Hypervisor prevents this to maintain control."
+          },
+          {
+            "text": "User mode",
+            "isCorrect": true,
+            "rationale": "The Guest OS runs in user mode with restricted privileges. When it tries to execute privileged instructions, it 'traps' to the Hypervisor."
+          },
+          {
+            "text": "Hypervisor mode",
+            "isCorrect": false,
+            "rationale": "Only the Hypervisor (VMM) runs in this privileged mode."
+          },
+          {
+            "text": "Ring 0",
+            "isCorrect": false,
+            "rationale": "Ring 0 is typically reserved for the host kernel or hypervisor; the Guest OS is deprivileged."
+          }
+        ],
+        "hint": "The Guest OS must be prevented from executing sensitive hardware instructions directly, so it runs in a restricted ring."
+      },
+      {
+        "question": "Which hypervisor type runs directly on hardware without a host OS?",
+        "answerOptions": [
+          {
+            "text": "Type 2 Hypervisor",
+            "isCorrect": false,
+            "rationale": "Type 2 hypervisors run as software applications on top of a standard operating system."
+          },
+          {
+            "text": "Hosted Hypervisor",
+            "isCorrect": false,
+            "rationale": "Hosted is another name for Type 2; it relies on a host OS."
+          },
+          {
+            "text": "Type 1 Hypervisor",
+            "isCorrect": true,
+            "rationale": "Type 1 (Bare Metal) hypervisors install directly on the server hardware for maximum efficiency."
+          },
+          {
+            "text": "Container Runtime",
+            "isCorrect": false,
+            "rationale": "Container runtimes rely on a host OS kernel and are not hypervisors."
+          }
+        ],
+        "hint": "Think 'Bare Metal'—it doesn't need Windows or Linux underneath it."
+      },
+      {
+        "question": "What is the primary purpose of Domain 0 in Xen architecture?",
+        "answerOptions": [
+          {
+            "text": "Run unprivileged guest VMs",
+            "isCorrect": false,
+            "rationale": "Unprivileged guests are called Domain U (DomU)."
+          },
+          {
+            "text": "Manage hardware resources and allocate them to guest domains",
+            "isCorrect": true,
+            "rationale": "Dom0 is a privileged VM that boots first and houses the drivers and toolstack to manage all other VMs."
+          },
+          {
+            "text": "Provide network isolation",
+            "isCorrect": false,
+            "rationale": "While it helps configure networking, its primary role is management and hardware abstraction."
+          },
+          {
+            "text": "Handle encryption",
+            "isCorrect": false,
+            "rationale": "Encryption is a function that can happen anywhere, not the defining purpose of Dom0."
+          }
+        ],
+        "hint": "In Xen, one special domain acts as the administrator for all others."
+      },
+      {
+        "question": "Which storage type is accessed through APIs rather than a file system?",
+        "answerOptions": [
+          {
+            "text": "Volume Storage",
+            "isCorrect": false,
+            "rationale": "Volume (Block) storage is accessed by the OS as a mounted disk drive."
+          },
+          {
+            "text": "File Storage",
+            "isCorrect": false,
+            "rationale": "File storage (like NFS) is accessed via network file system protocols and directory trees."
+          },
+          {
+            "text": "Object Storage",
+            "isCorrect": true,
+            "rationale": "Object storage (e.g., S3) uses HTTP APIs (GET, PUT, DELETE) to manage data as flat objects with metadata."
+          },
+          {
+            "text": "Block Storage",
+            "isCorrect": false,
+            "rationale": "Block storage is accessed at the sector/block level by the OS, not via web APIs."
+          }
+        ],
+        "hint": "This storage type is popular for cloud apps because you can access data via a URL, like Amazon S3."
+      },
+      {
+        "question": "What is the main security benefit of the NoHype architecture?",
+        "answerOptions": [
+          {
+            "text": "Better performance",
+            "isCorrect": false,
+            "rationale": "Performance is a benefit, but the question asks for the *security* benefit."
+          },
+          {
+            "text": "Eliminates hypervisor as attack surface",
+            "isCorrect": true,
+            "rationale": "NoHype removes the hypervisor layer after boot, preventing VM escape attacks and reducing the attack surface."
+          },
+          {
+            "text": "Easier resource management",
+            "isCorrect": false,
+            "rationale": "NoHype actually makes management harder because the virtualization layer is removed."
+          },
+          {
+            "text": "Lower cost",
+            "isCorrect": false,
+            "rationale": "Cost is not the primary driver for NoHype; security isolation is."
+          }
+        ],
+        "hint": "If the Hypervisor is the target of attacks, what does this architecture do to it?"
+      },
+      {
+        "question": "In data dispersion, how many fragments must be retrieved to reconstruct a file if it was split into n fragments?",
+        "answerOptions": [
+          {
+            "text": "All n fragments",
+            "isCorrect": false,
+            "rationale": "If all n were required, losing one would lose data, offering no redundancy."
+          },
+          {
+            "text": "m fragments where m < n",
+            "isCorrect": true,
+            "rationale": "Data dispersion (like Erasure Coding) allows reconstruction from a subset 'm' of the total 'n' fragments."
+          },
+          {
+            "text": "n/2 fragments",
+            "isCorrect": false,
+            "rationale": "While n/2 is a possible value for m, the rule is simply that m is a sufficient subset, not necessarily exactly half."
+          },
+          {
+            "text": "Exactly 3 fragments",
+            "isCorrect": false,
+            "rationale": "3 is a specific implementation detail, not the general rule for dispersion."
+          }
+        ],
+        "hint": "This technique works like a hologram or RAID; you don't need every single piece to see the whole picture."
+      }
+    ]
   },
   {
     "chapter": 3,
-    "question": "What is the primary difference between vertical and horizontal scaling?",
-    "options": [
-      "Vertical adds more servers; horizontal increases server resources",
-      "Vertical increases server resources; horizontal adds more servers",
-      "They are the same",
-      "Vertical is cheaper than horizontal"
-    ],
-    "correct": 1,
-    "explanation": "Vertical scaling (scale up) increases resources of a single server (CPU/RAM). Horizontal scaling (scale out) adds more server instances."
-  },
-  {
-    "chapter": 3,
-    "question": "Which load balancing algorithm routes traffic to the server with the fewest active connections?",
-    "options": ["Round Robin", "Least Connections", "IP Hash", "Weighted Round Robin"],
-    "correct": 1,
-    "explanation": "Least Connections algorithm routes traffic to the server with the fewest active connections, optimizing load distribution."
-  },
-  {
-    "chapter": 3,
-    "question": "What is the key difference between Docker images and containers?",
-    "options": [
-      "Images are dynamic; containers are static",
-      "Images are read-only templates; containers are running instances",
-      "They are the same thing",
-      "Containers are stored on disk; images run in memory"
-    ],
-    "correct": 1,
-    "explanation": "Docker images are read-only templates (static). Containers are running instances of images (dynamic, mutable) with a thin read/write layer."
-  },
-  {
-    "chapter": 3,
-    "question": "In Docker's layered architecture, where do runtime changes occur?",
-    "options": [
-      "In the base image layer",
-      "In all layers simultaneously",
-      "In the thin read/write container layer",
-      "In a separate volume"
-    ],
-    "correct": 2,
-    "explanation": "Runtime changes occur only in the thin read/write layer on top of read-only image layers, keeping base images unchanged and shareable."
-  },
-  {
-    "chapter": 3,
-    "question": "What does the EXPOSE instruction in a Dockerfile specify?",
-    "options": [
-      "The port the container will listen on",
-      "The network interface to use",
-      "The firewall rules",
-      "The load balancer configuration"
-    ],
-    "correct": 0,
-    "explanation": "EXPOSE specifies the port where the application will be accessible, though port mapping is still needed to access it from the host."
-  },
-  {
-    "chapter": 3,
-    "question": "What is Docker Compose primarily used for?",
-    "options": [
-      "Building single container images",
-      "Managing and running multiple containers as a single application",
-      "Deploying to production only",
-      "Creating Dockerfiles"
-    ],
-    "correct": 1,
-    "explanation": "Docker Compose orchestrates multiple containers defined in a YAML file, managing services like web servers, databases, and caches together."
-  },
-  {
-    "chapter": 3,
-    "question": "Which PaaS platform is tightly coupled with Google's Go programming language?",
-    "options": ["Heroku", "AWS Elastic Beanstalk", "Google App Engine", "Azure App Service"],
-    "correct": 2,
-    "explanation": "Google App Engine is tightly coupled with Go and provides App Engine's Go SDK for application development."
-  },
-  {
-    "chapter": 3,
-    "question": "What type of database does Google App Engine Datastore use?",
-    "options": ["Relational SQL", "NoSQL schema-less object-based", "Graph database", "Time-series database"],
-    "correct": 1,
-    "explanation": "App Engine Datastore is a NoSQL schema-less object-based data storage with entities (like tables) and properties (like columns)."
+    "quiz": [
+      {
+        "question": "What is the key difference between Docker images and containers?",
+        "answerOptions": [
+          {
+            "text": "Images are dynamic; containers are static",
+            "isCorrect": false,
+            "rationale": "This is reversed. Images are the static templates."
+          },
+          {
+            "text": "Images are read-only templates; containers are running instances",
+            "isCorrect": true,
+            "rationale": "An image is the build artifact (code + libs). A container is the execution of that image with a writable layer."
+          },
+          {
+            "text": "They are the same thing",
+            "isCorrect": false,
+            "rationale": "They are related but distinct states (stored vs. running)."
+          },
+          {
+            "text": "Containers are stored on disk; images run in memory",
+            "isCorrect": false,
+            "rationale": "Images are stored on disk; containers run in memory (though they also exist on disk)."
+          }
+        ],
+        "hint": "Think of the relationship between a Class (code) and an Object (instance) in programming."
+      },
+      {
+        "question": "What happens to data in Docker's container layer when the container is deleted?",
+        "answerOptions": [
+          {
+            "text": "It's saved to the image",
+            "isCorrect": false,
+            "rationale": "Images are immutable and read-only; they are never updated by container changes."
+          },
+          {
+            "text": "It's permanently lost",
+            "isCorrect": true,
+            "rationale": "The container's top read/write layer is ephemeral and tied to the container's lifecycle. Deleting the container deletes this layer."
+          },
+          {
+            "text": "It's backed up automatically",
+            "isCorrect": false,
+            "rationale": "Docker does not backup data automatically; you must use Volumes for persistence."
+          },
+          {
+            "text": "It's moved to a volume",
+            "isCorrect": false,
+            "rationale": "Data is only stored in a volume if explicitly configured; otherwise, it stays in the ephemeral layer."
+          }
+        ],
+        "hint": "Unless you use a 'Volume', the writable part of a container is ephemeral."
+      },
+      {
+        "question": "What does the EXPOSE instruction in a Dockerfile specify?",
+        "answerOptions": [
+          {
+            "text": "The port the container will listen on",
+            "isCorrect": true,
+            "rationale": "EXPOSE documents that the container listens on specific network ports at runtime."
+          },
+          {
+            "text": "The network interface to use",
+            "isCorrect": false,
+            "rationale": "Interface selection is handled by the Docker daemon/network drivers, not the Dockerfile."
+          },
+          {
+            "text": "The firewall rules",
+            "isCorrect": false,
+            "rationale": "EXPOSE does not create firewall rules or publish the port to the host; it is metadata."
+          },
+          {
+            "text": "The load balancer configuration",
+            "isCorrect": false,
+            "rationale": "Load balancing is an orchestration concern, not part of the Dockerfile image definition."
+          }
+        ],
+        "hint": "It serves as documentation for which network port the app uses, but it doesn't actually open it to the outside world."
+      },
+      {
+        "question": "What is Docker Compose primarily used for?",
+        "answerOptions": [
+          {
+            "text": "Building single container images",
+            "isCorrect": false,
+            "rationale": "Standard `docker build` handles single images."
+          },
+          {
+            "text": "Managing and running multiple containers as a single application",
+            "isCorrect": true,
+            "rationale": "Docker Compose allows defining multiple services (database, web, cache) in one YAML file and running them together."
+          },
+          {
+            "text": "Deploying to production only",
+            "isCorrect": false,
+            "rationale": "Compose is widely used for local development and testing, not just production."
+          },
+          {
+            "text": "Creating Dockerfiles",
+            "isCorrect": false,
+            "rationale": "Compose uses Dockerfiles; it does not create them."
+          }
+        ],
+        "hint": "If your app needs a web server AND a database to work, you use this tool to start them both at once."
+      },
+      {
+        "question": "Which command is used to create a Docker image from a Dockerfile?",
+        "answerOptions": [
+          {
+            "text": "docker run",
+            "isCorrect": false,
+            "rationale": "`docker run` creates a container from an existing image."
+          },
+          {
+            "text": "docker build",
+            "isCorrect": true,
+            "rationale": "`docker build` reads the Dockerfile instructions and constructs a new image."
+          },
+          {
+            "text": "docker create",
+            "isCorrect": false,
+            "rationale": "`docker create` initializes a container but does not start it; it does not build images."
+          },
+          {
+            "text": "docker commit",
+            "isCorrect": false,
+            "rationale": "`docker commit` creates an image from a running container's changes, not from a Dockerfile."
+          }
+        ],
+        "hint": "You are 'building' the blueprint."
+      },
+      {
+        "question": "Which flag is used with the 'docker run' command to map a host port to a container port?",
+        "answerOptions": [
+          {
+            "text": "-v",
+            "isCorrect": false,
+            "rationale": "The `-v` flag is used to mount volumes."
+          },
+          {
+            "text": "-d",
+            "isCorrect": false,
+            "rationale": "The `-d` flag runs the container in detached (background) mode."
+          },
+          {
+            "text": "-p",
+            "isCorrect": true,
+            "rationale": "The `-p` (publish) flag maps a port on the host to a port inside the container (e.g., -p 8080:80)."
+          },
+          {
+            "text": "-it",
+            "isCorrect": false,
+            "rationale": "The `-it` flag allows for interactive terminal access."
+          }
+        ],
+        "hint": "Think 'P' for Port."
+      },
+      {
+        "question": "What is the primary difference between vertical and horizontal scaling?",
+        "answerOptions": [
+          {
+            "text": "Vertical adds more servers; horizontal increases server resources",
+            "isCorrect": false,
+            "rationale": "This is the reverse of the correct definition."
+          },
+          {
+            "text": "Vertical increases server resources; horizontal adds more servers",
+            "isCorrect": true,
+            "rationale": "Vertical (Scale Up) = bigger CPU/RAM. Horizontal (Scale Out) = more machines."
+          },
+          {
+            "text": "They are the same",
+            "isCorrect": false,
+            "rationale": "They represent fundamentally different approaches to handling load."
+          },
+          {
+            "text": "Vertical is cheaper than horizontal",
+            "isCorrect": false,
+            "rationale": "Vertical scaling gets exponentially expensive at the high end, whereas horizontal uses commodity hardware."
+          }
+        ],
+        "hint": "Think of a building: you can add more floors (Vertical) or build a second building next to it (Horizontal)."
+      },
+      {
+        "question": "Which load balancing algorithm routes traffic to the server with the fewest active connections?",
+        "answerOptions": [
+          {
+            "text": "Round Robin",
+            "isCorrect": false,
+            "rationale": "Round Robin cycles through servers sequentially, regardless of load."
+          },
+          {
+            "text": "Least Connections",
+            "isCorrect": true,
+            "rationale": "This algorithm is dynamic; it checks which server is currently handling the least work and sends the new request there."
+          },
+          {
+            "text": "IP Hash",
+            "isCorrect": false,
+            "rationale": "IP Hash routes based on the client's IP address to ensure stickiness."
+          },
+          {
+            "text": "Weighted Round Robin",
+            "isCorrect": false,
+            "rationale": "Weighted Round Robin accounts for server capacity but follows a set rotation, not active connections."
+          }
+        ],
+        "hint": "The name of the algorithm literally describes the criteria it uses."
+      }
+    ]
   },
   {
     "chapter": 4,
-    "question": "What is the main purpose of Service Oriented Architecture (SOA) in SaaS?",
-    "options": [
-      "To increase server capacity",
-      "To break applications into independent, reusable services",
-      "To reduce network latency",
-      "To eliminate databases"
-    ],
-    "correct": 1,
-    "explanation": "SOA breaks applications into independent, reusable services that communicate over a network, enabling flexibility and reducing dependencies."
-  },
-  {
-    "chapter": 4,
-    "question": "In multi-tenancy architecture, what is the 'noisy neighbor' problem?",
-    "options": [
-      "Network routing issues",
-      "One tenant using excessive resources slows performance for others",
-      "Database corruption",
-      "Security breach"
-    ],
-    "correct": 1,
-    "explanation": "The noisy neighbor problem occurs when one tenant's excessive resource usage (CPU, memory, I/O) degrades performance for other tenants sharing infrastructure."
-  },
-  {
-    "chapter": 4,
-    "question": "Which multi-tenancy architecture provides the highest isolation?",
-    "options": [
-      "Shared Application + Shared Database",
-      "Shared Application + Separate Database",
-      "Separate Application + Separate Database",
-      "All provide equal isolation"
-    ],
-    "correct": 2,
-    "explanation": "Separate Application + Separate Database provides highest isolation (used for banking/government) but is most expensive and least scalable."
-  },
-  {
-    "chapter": 4,
-    "question": "What does MFA stand for in SaaS authentication?",
-    "options": [
-      "Multiple File Access",
-      "Multi-Factor Authentication",
-      "Master File Allocation",
-      "Managed Function Authentication"
-    ],
-    "correct": 1,
-    "explanation": "MFA (Multi-Factor Authentication) adds additional verification like SMS codes, OTPs, or biometrics to improve security beyond passwords."
-  },
-  {
-    "chapter": 4,
-    "question": "Which authentication method allows users to log in once and access multiple systems?",
-    "options": ["Multi-Factor Authentication", "Token-Based Authentication", "Single Sign-On (SSO)", "OAuth 2.0"],
-    "correct": 2,
-    "explanation": "Single Sign-On (SSO) allows users to authenticate once and access multiple systems using protocols like SAML 2.0 or OAuth 2.0."
-  },
-  {
-    "chapter": 4,
-    "question": "What is the difference between authentication and authorization?",
-    "options": [
-      "They are the same",
-      "Authentication verifies identity; authorization determines permissions",
-      "Authorization verifies identity; authentication determines permissions",
-      "Authentication is for APIs only"
-    ],
-    "correct": 1,
-    "explanation": "Authentication verifies who a user is. Authorization determines what that authenticated user is allowed to do (which data/features they can access)."
-  },
-  {
-    "chapter": 4,
-    "question": "Which API type uses XML and strict contracts for enterprise systems?",
-    "options": ["REST API", "SOAP API", "GraphQL", "Webhooks"],
-    "correct": 1,
-    "explanation": "SOAP API uses XML and strict contracts, commonly used in enterprise systems like Salesforce SOAP API."
-  },
-  {
-    "chapter": 4,
-    "question": "What are webhooks in SaaS integration?",
-    "options": [
-      "Database queries",
-      "Event-driven push notifications from one app to another",
-      "User interface components",
-      "Encryption methods"
-    ],
-    "correct": 1,
-    "explanation": "Webhooks are event-driven push notifications that one application sends to another when specific events occur (e.g., Stripe payment success)."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the main advantage of microservices over monolithic architecture?",
-    "options": [
-      "Simpler deployment",
-      "Independent scaling and fault isolation",
-      "Requires less network bandwidth",
-      "Easier to debug"
-    ],
-    "correct": 1,
-    "explanation": "Microservices allow independent scaling of services and fault isolation—if one service fails, others continue working, unlike monolithic apps."
-  },
-  {
-    "chapter": 5,
-    "question": "How do microservices communicate asynchronously?",
-    "options": [
-      "Direct API calls",
-      "Shared database",
-      "Message brokers like RabbitMQ",
-      "File sharing"
-    ],
-    "correct": 2,
-    "explanation": "Asynchronous communication uses message brokers (e.g., RabbitMQ, Kafka) for decoupled communication between microservices."
-  },
-  {
-    "chapter": 1,
-    "question": "According to Amdahl's Law, if 10% of a program is sequential (α = 0.10), what is the maximum theoretical speedup achievable with infinite processors?",
-    "options": ["5×", "10×", "20×", "100×"],
-    "correct": 1,
-    "explanation": "Amdahl's Law: S ≈ 1/α. With α = 0.10, maximum speedup = 1/0.10 = 10×, regardless of the number of processors."
-  },
-  {
-    "chapter": 5,
-    "question": "What is a 'cold start' in serverless computing?",
-    "options": [
-      "Starting a server in winter",
-      "Initial delay when provisioning resources for the first request",
-      "Rebooting a crashed function",
-      "Deploying code to production"
-    ],
-    "correct": 1,
-    "explanation": "Cold start is the delay on the first request because the cloud provider must provision resources. Subsequent requests are faster (warm start)."
-  },
-  {
-    "chapter": 5,
-    "question": "What does FaaS stand for?",
-    "options": [
-      "File as a Service",
-      "Function as a Service",
-      "Framework as a Service",
-      "Firewall as a Service"
-    ],
-    "correct": 1,
-    "explanation": "FaaS (Function as a Service) is serverless compute that runs event-driven code without managing servers (e.g., AWS Lambda, Azure Functions)."
+    "quiz": [
+      {
+        "question": "In multi-tenancy architecture, what is the 'noisy neighbor' problem?",
+        "answerOptions": [
+          {
+            "text": "Network routing issues",
+            "isCorrect": false,
+            "rationale": "While network issues can occur, noisy neighbor specifically refers to resource contention."
+          },
+          {
+            "text": "One tenant using excessive resources slows performance for others",
+            "isCorrect": true,
+            "rationale": "Since tenants share infrastructure (CPU/IO), a heavy workload from one can starve the others of resources."
+          },
+          {
+            "text": "Database corruption",
+            "isCorrect": false,
+            "rationale": "Corruption is a data integrity issue, not a performance contention issue."
+          },
+          {
+            "text": "Security breach",
+            "isCorrect": false,
+            "rationale": "Noisy neighbor is about performance isolation, not necessarily data access or security."
+          }
+        ],
+        "hint": "Imagine living in an apartment where the person next door plays loud drums all night."
+      },
+      {
+        "question": "Which multi-tenancy architecture provides the highest isolation?",
+        "answerOptions": [
+          {
+            "text": "Shared Application + Shared Database",
+            "isCorrect": false,
+            "rationale": "This offers the lowest isolation as everyone's data is commingled in the same tables."
+          },
+          {
+            "text": "Shared Application + Separate Database",
+            "isCorrect": false,
+            "rationale": "This is a middle ground; data is isolated, but the application runtime is still shared."
+          },
+          {
+            "text": "Separate Application + Separate Database",
+            "isCorrect": true,
+            "rationale": "Each tenant gets their own app instance and database. It acts like a private cloud within a SaaS, offering maximum security."
+          },
+          {
+            "text": "All provide equal isolation",
+            "isCorrect": false,
+            "rationale": "Isolation levels vary significantly based on how much infrastructure is shared."
+          }
+        ],
+        "hint": "The option where tenants share absolutely nothing."
+      },
+      {
+        "question": "What is the main purpose of Service Oriented Architecture (SOA) in SaaS?",
+        "answerOptions": [
+          {
+            "text": "To increase server capacity",
+            "isCorrect": false,
+            "rationale": "SOA is a software design pattern, not a hardware scaling strategy."
+          },
+          {
+            "text": "To break applications into independent, reusable services",
+            "isCorrect": true,
+            "rationale": "SOA structures software as distinct services that communicate over a network, promoting reusability and modularity."
+          },
+          {
+            "text": "To reduce network latency",
+            "isCorrect": false,
+            "rationale": "SOA often *increases* latency due to network calls between services compared to a monolith."
+          },
+          {
+            "text": "To eliminate databases",
+            "isCorrect": false,
+            "rationale": "SOA services still need data storage; they do not eliminate it."
+          }
+        ],
+        "hint": "Instead of one giant block of code, the app is built from many small, talking blocks."
+      },
+      {
+        "question": "What are webhooks in SaaS integration?",
+        "answerOptions": [
+          {
+            "text": "Database queries",
+            "isCorrect": false,
+            "rationale": "Webhooks are triggered by events, whereas queries are requests for data."
+          },
+          {
+            "text": "Event-driven push notifications from one app to another",
+            "isCorrect": true,
+            "rationale": "Webhooks allow App A to 'call' App B automatically when something happens (e.g., 'Payment Received'), pushing data in real-time."
+          },
+          {
+            "text": "User interface components",
+            "isCorrect": false,
+            "rationale": "Webhooks are backend communication tools, not UI elements."
+          },
+          {
+            "text": "Encryption methods",
+            "isCorrect": false,
+            "rationale": "Webhooks are a transport mechanism, not a cryptographic algorithm."
+          }
+        ],
+        "hint": "Don't call us, we'll call you. (Push vs Pull)."
+      },
+      {
+        "question": "Which API type uses XML and strict contracts for enterprise systems?",
+        "answerOptions": [
+          {
+            "text": "REST API",
+            "isCorrect": false,
+            "rationale": "REST is flexible, typically uses JSON, and is less strict than SOAP."
+          },
+          {
+            "text": "SOAP API",
+            "isCorrect": true,
+            "rationale": "SOAP (Simple Object Access Protocol) is a protocol with strict standards, using XML for messaging, often preferred in legacy enterprise/banking."
+          },
+          {
+            "text": "GraphQL",
+            "isCorrect": false,
+            "rationale": "GraphQL is a query language for APIs that allows clients to request exactly what they need, usually in JSON."
+          },
+          {
+            "text": "Webhooks",
+            "isCorrect": false,
+            "rationale": "Webhooks are a pattern for event notification, not a specific protocol format like XML/SOAP."
+          }
+        ],
+        "hint": "Think of the older, heavyweight protocol often used in banking."
+      }
+    ]
   },
   {
     "chapter": 5,
-    "question": "What is the maximum execution time for AWS Lambda functions?",
-    "options": ["5 minutes", "10 minutes", "15 minutes", "30 minutes"],
-    "correct": 2,
-    "explanation": "AWS Lambda has a maximum execution time of 15 minutes per function invocation."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the Backend for Frontend (BFF) pattern in API Gateways?",
-    "options": [
-      "Using one gateway for all clients",
-      "Creating different gateways for different client types (mobile vs web)",
-      "Storing backend data in the frontend",
-      "Bypassing the API gateway"
-    ],
-    "correct": 1,
-    "explanation": "BFF pattern creates separate API gateways optimized for different client types (mobile, web, IoT) to tailor responses to each client's needs."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the sidecar pattern in service mesh?",
-    "options": [
-      "Running services side-by-side on the same server",
-      "Using a lightweight proxy alongside every microservice instance",
-      "Deploying backup services",
-      "Load balancing technique"
-    ],
-    "correct": 1,
-    "explanation": "Sidecar pattern deploys a lightweight proxy (e.g., Envoy) alongside each microservice instance to handle all traffic, enabling mTLS, retries, and observability."
-  },
-  {
-    "chapter": 5,
-    "question": "Which Kubernetes component is the only one that talks to etcd?",
-    "options": ["Kubelet", "Kube-Proxy", "Kube-API Server", "Scheduler"],
-    "correct": 2,
-    "explanation": "The Kube-API Server is the only component that directly communicates with etcd, the distributed key-value store holding cluster state."
-  },
-  {
-    "chapter": 5,
-    "question": "What is a Pod in Kubernetes?",
-    "options": [
-      "A cluster of servers",
-      "The smallest deployable unit, wrapping one or more containers",
-      "A network interface",
-      "A storage volume"
-    ],
-    "correct": 1,
-    "explanation": "A Pod is Kubernetes' smallest deployable unit—a wrapper around one or more containers representing a single instance of a running application."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the role of the Kubelet?",
-    "options": [
-      "Managing the API server",
-      "Storing cluster configuration",
-      "Ensuring containers are running on each node",
-      "Load balancing traffic"
-    ],
-    "correct": 2,
-    "explanation": "Kubelet is the node agent that ensures containers are running as specified, watches the API server for Pod specs, and reports status."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the difference between declarative and imperative IaC?",
-    "options": [
-      "Declarative specifies steps; imperative specifies desired state",
-      "Declarative specifies desired state; imperative specifies steps",
-      "They are the same",
-      "Declarative is only for networks"
-    ],
-    "correct": 1,
-    "explanation": "Declarative IaC (Terraform) specifies the desired final state. Imperative IaC (Ansible) defines step-by-step instructions."
-  },
-  {
-    "chapter": 5,
-    "question": "What does CI/CD stand for?",
-    "options": [
-      "Continuous Integration / Continuous Deployment",
-      "Cloud Infrastructure / Cloud Development",
-      "Container Integration / Container Deployment",
-      "Central Intelligence / Central Development"
-    ],
-    "correct": 0,
-    "explanation": "CI/CD stands for Continuous Integration (frequent code merges with automated tests) and Continuous Deployment/Delivery (automated deployment to production/staging)."
+    "quiz": [
+      {
+        "question": "What is the main advantage of microservices over monolithic architecture?",
+        "answerOptions": [
+          {
+            "text": "Simpler deployment",
+            "isCorrect": false,
+            "rationale": "Microservices deployment is complex due to the number of moving parts."
+          },
+          {
+            "text": "Independent scaling and fault isolation",
+            "isCorrect": true,
+            "rationale": "You can scale just the 'Login' service if it's busy, and if 'Search' crashes, the rest of the app stays up."
+          },
+          {
+            "text": "Requires less network bandwidth",
+            "isCorrect": false,
+            "rationale": "Microservices require *more* bandwidth because components talk over the network."
+          },
+          {
+            "text": "Easier to debug",
+            "isCorrect": false,
+            "rationale": "Debugging distributed systems is generally harder than tracing a single monolithic process."
+          }
+        ],
+        "hint": "If one part breaks, the whole ship doesn't sink."
+      },
+      {
+        "question": "What is a 'cold start' in serverless computing?",
+        "answerOptions": [
+          {
+            "text": "Starting a server in winter",
+            "isCorrect": false,
+            "rationale": "This is a literal interpretation; cloud terms are metaphorical."
+          },
+          {
+            "text": "Initial delay when provisioning resources for the first request",
+            "isCorrect": true,
+            "rationale": "Since serverless functions scale to zero, the provider must spin up a new environment when a request finally comes in, causing a delay."
+          },
+          {
+            "text": "Rebooting a crashed function",
+            "isCorrect": false,
+            "rationale": "While similar, cold start refers to the provisioning from an idle state, not necessarily a crash recovery."
+          },
+          {
+            "text": "Deploying code to production",
+            "isCorrect": false,
+            "rationale": "Deployment is a CI/CD process; cold start is a runtime latency issue."
+          }
+        ],
+        "hint": "The latency penalty you pay when your function wakes up from sleep."
+      },
+      {
+        "question": "What is a Pod in Kubernetes?",
+        "answerOptions": [
+          {
+            "text": "A cluster of servers",
+            "isCorrect": false,
+            "rationale": "A cluster is the whole system; a Pod is a small object inside it."
+          },
+          {
+            "text": "The smallest deployable unit, wrapping one or more containers",
+            "isCorrect": true,
+            "rationale": "Kubernetes doesn't run containers directly; it wraps them in Pods, which share an IP and storage."
+          },
+          {
+            "text": "A network interface",
+            "isCorrect": false,
+            "rationale": "A Pod uses network interfaces, but it is an application wrapper."
+          },
+          {
+            "text": "A storage volume",
+            "isCorrect": false,
+            "rationale": "Pods can *use* volumes, but they are compute units."
+          }
+        ],
+        "hint": "Like a pea pod, it can hold one or more 'peas' (containers) inside it."
+      },
+      {
+        "question": "What is the role of the Kubelet?",
+        "answerOptions": [
+          {
+            "text": "Managing the API server",
+            "isCorrect": false,
+            "rationale": "The API Server manages itself; Kubelet runs on the worker nodes."
+          },
+          {
+            "text": "Storing cluster configuration",
+            "isCorrect": false,
+            "rationale": "Configuration is stored in etcd."
+          },
+          {
+            "text": "Ensuring containers are running on each node",
+            "isCorrect": true,
+            "rationale": "Kubelet is the agent on every node that talks to the control plane and ensures the assigned containers are running and healthy."
+          },
+          {
+            "text": "Load balancing traffic",
+            "isCorrect": false,
+            "rationale": "Kube-proxy handles network rules; Kubelet handles container execution."
+          }
+        ],
+        "hint": "The 'Captain's' agent on every single ship (node) in the fleet."
+      },
+      {
+        "question": "What is the purpose of etcd in Kubernetes?",
+        "answerOptions": [
+          {
+            "text": "Container runtime",
+            "isCorrect": false,
+            "rationale": "Docker or containerd is the runtime."
+          },
+          {
+            "text": "Distributed key-value store holding cluster state",
+            "isCorrect": true,
+            "rationale": "etcd is the 'brain' or database of Kubernetes, storing all configuration data and the status of every object."
+          },
+          {
+            "text": "Load balancer",
+            "isCorrect": false,
+            "rationale": "Load balancing is handled by Services and Ingress."
+          },
+          {
+            "text": "Network proxy",
+            "isCorrect": false,
+            "rationale": "Kube-proxy handles networking."
+          }
+        ],
+        "hint": "If Kubernetes loses this, it forgets everything about the cluster."
+      },
+      {
+        "question": "Which Kubernetes component is the only one that talks to etcd?",
+        "answerOptions": [
+          {
+            "text": "Kubelet",
+            "isCorrect": false,
+            "rationale": "Kubelet talks to the API Server, not etcd directly."
+          },
+          {
+            "text": "Kube-Proxy",
+            "isCorrect": false,
+            "rationale": "Kube-Proxy also talks to the API Server."
+          },
+          {
+            "text": "Kube-API Server",
+            "isCorrect": true,
+            "rationale": "To maintain consistency and security, only the API Server is allowed to read/write to the database (etcd). All other components talk to the API Server."
+          },
+          {
+            "text": "Scheduler",
+            "isCorrect": false,
+            "rationale": "The Scheduler asks the API Server for work; it doesn't touch the DB."
+          }
+        ],
+        "hint": "The 'Front Door' of the control plane."
+      },
+      {
+        "question": "What does CI/CD stand for?",
+        "answerOptions": [
+          {
+            "text": "Continuous Integration / Continuous Deployment",
+            "isCorrect": true,
+            "rationale": "It refers to the automation of integrating code changes and deploying them to environments."
+          },
+          {
+            "text": "Cloud Infrastructure / Cloud Development",
+            "isCorrect": false,
+            "rationale": "This is a misinterpretation of the acronym."
+          },
+          {
+            "text": "Container Integration / Container Deployment",
+            "isCorrect": false,
+            "rationale": "While containers are often used, CI/CD applies to any software."
+          },
+          {
+            "text": "Central Intelligence / Central Development",
+            "isCorrect": false,
+            "rationale": "Unrelated to software engineering."
+          }
+        ],
+        "hint": "The modern pipeline for shipping code."
+      },
+      {
+        "question": "What is the difference between declarative and imperative IaC?",
+        "answerOptions": [
+          {
+            "text": "Declarative specifies steps; imperative specifies desired state",
+            "isCorrect": false,
+            "rationale": "This is reversed."
+          },
+          {
+            "text": "Declarative specifies desired state; imperative specifies steps",
+            "isCorrect": true,
+            "rationale": "Declarative (e.g., Terraform) says 'I want 3 servers'. Imperative (e.g., scripts) says 'Create server 1, then create server 2...'."
+          },
+          {
+            "text": "They are the same",
+            "isCorrect": false,
+            "rationale": "They represent different philosophies of automation."
+          },
+          {
+            "text": "Declarative is only for networks",
+            "isCorrect": false,
+            "rationale": "Declarative is used for all infrastructure types (compute, storage, etc.)."
+          }
+        ],
+        "hint": "One is like a recipe (do this, then that); the other is like a menu order (I want this result)."
+      }
+    ]
   },
   {
     "chapter": 6,
-    "question": "What are Security Groups in cloud computing?",
-    "options": [
-      "Physical firewalls",
-      "Stateful virtual firewalls controlling traffic to cloud resources",
-      "User access roles",
-      "Encryption keys"
-    ],
-    "correct": 1,
-    "explanation": "Security Groups are stateful virtual firewalls that control inbound and outbound traffic at the resource level (instances, load balancers)."
-  },
-  {
-    "chapter": 6,
-    "question": "What does 'stateful' mean for Security Groups?",
-    "options": [
-      "They remember previous configurations",
-      "If inbound traffic is allowed, outbound response is automatically permitted",
-      "They require manual configuration",
-      "They only work with TCP"
-    ],
-    "correct": 1,
-    "explanation": "Stateful means if inbound traffic is allowed, the corresponding outbound response is automatically permitted (and vice versa)."
-  },
-  {
-    "chapter": 6,
-    "question": "What is a key advantage of referencing Security Groups instead of IP addresses?",
-    "options": [
-      "Faster performance",
-      "Dynamic, identity-based network security",
-      "Lower cost",
-      "Better encryption"
-    ],
-    "correct": 1,
-    "explanation": "Referencing Security Groups enables dynamic, identity-based security. As instances scale, security policies automatically apply without hardcoding IPs."
-  },
-  {
-    "chapter": 6,
-    "question": "What is the 'new security perimeter' in cloud computing?",
-    "options": ["Network firewalls", "Physical data centers", "Identity (IAM)", "Encryption keys"],
-    "correct": 2,
-    "explanation": "In cloud environments, identity becomes the new security boundary, replacing traditional network perimeters, and governs access through IAM policies."
-  },
-  {
-    "chapter": 6,
-    "question": "Which access control model assigns permissions grouped into roles?",
-    "options": [
-      "Attribute-Based Access Control (ABAC)",
-      "Role-Based Access Control (RBAC)",
-      "Policy-Based Access Control",
-      "Discretionary Access Control"
-    ],
-    "correct": 1,
-    "explanation": "RBAC groups permissions into roles, which are then assigned to identities. It's widely used in Kubernetes and cloud IAM systems."
-  },
-  {
-    "chapter": 6,
-    "question": "What is the difference between data residency and data sovereignty?",
-    "options": [
-      "They are the same",
-      "Residency is physical location; sovereignty is legal jurisdiction",
-      "Residency is legal; sovereignty is physical",
-      "Residency only applies to backups"
-    ],
-    "correct": 1,
-    "explanation": "Data residency is the physical location where data is stored. Data sovereignty is the legal jurisdiction governing that data based on its location."
-  },
-  {
-    "chapter": 6,
-    "question": "Under GDPR, what is the maximum penalty for non-compliance?",
-    "options": [
-      "€1 million",
-      "€10 million or 2% of global revenue",
-      "€20 million or 4% of global revenue",
-      "€50 million"
-    ],
-    "correct": 2,
-    "explanation": "GDPR can impose penalties up to €20 million or 4% of global annual revenue, whichever is higher, for serious violations."
-  },
-  {
-    "chapter": 6,
-    "question": "What is envelope encryption?",
-    "options": [
-      "Encrypting emails",
-      "Using a Key Encryption Key (KEK) to encrypt the Data Encryption Key (DEK)",
-      "Physical security for keys",
-      "Encrypting only metadata"
-    ],
-    "correct": 1,
-    "explanation": "Envelope encryption uses a KEK to encrypt the DEK. The DEK encrypts data. This protects the key that protects the data, with KEK never leaving KMS."
-  },
-  {
-    "chapter": 6,
-    "question": "Which type of cryptographic key uses the same key for encryption and decryption?",
-    "options": ["Asymmetric keys", "Symmetric keys", "Public keys", "Session keys"],
-    "correct": 1,
-    "explanation": "Symmetric keys use the same key for both encryption and decryption. They're fast and used for data encryption (e.g., AES)."
-  },
-  {
-    "chapter": 6,
-    "question": "What is the primary benefit of key rotation?",
-    "options": [
-      "Faster encryption",
-      "Limits impact of key compromise",
-      "Reduces storage cost",
-      "Improves network speed"
-    ],
-    "correct": 1,
-    "explanation": "Key rotation periodically replaces keys, limiting the impact if a key is compromised and reducing the amount of data encrypted with a single key."
-  },
-  {
-    "chapter": 0,
-    "question": "In the shared responsibility model for IaaS, who is responsible for patching the operating system?",
-    "options": ["Cloud provider", "Customer", "Both equally", "Third-party vendor"],
-    "correct": 1,
-    "explanation": "In IaaS, the customer is responsible for OS patching, application security, and data protection. The provider manages physical infrastructure and hypervisor."
-  },
-  {
-    "chapter": 0,
-    "question": "Which storage type would be best for a database requiring high I/O performance?",
-    "options": ["Object Storage", "File Storage", "Volume Storage (Block)", "Archive Storage"],
-    "correct": 2,
-    "explanation": "Volume Storage (Block Storage) acts as a raw disk with fast read/write access, making it ideal for databases and OS storage."
-  },
-  {
-    "chapter": 0,
-    "question": "What happens to data in Docker's container layer when the container is deleted?",
-    "options": [
-      "It's saved to the image",
-      "It's permanently lost",
-      "It's backed up automatically",
-      "It's moved to a volume"
-    ],
-    "correct": 1,
-    "explanation": "The container's read/write layer is ephemeral—all runtime changes are permanently lost when the container is deleted unless stored in volumes."
-  },
-  {
-    "chapter": 0,
-    "question": "Which component in Kubernetes decides which node a Pod should run on?",
-    "options": ["Kubelet", "Controller Manager", "Scheduler", "API Server"],
-    "correct": 2,
-    "explanation": "The Scheduler filters and scores nodes based on resources, taints/tolerations, and affinity rules, then binds the Pod to the selected node."
-  },
-  {
-    "chapter": 0,
-    "question": "What is the main difference between containers and virtual machines?",
-    "options": [
-      "Containers are larger",
-      "Containers share the host OS kernel; VMs each have a full OS",
-      "VMs are faster to start",
-      "Containers require a hypervisor"
-    ],
-    "correct": 1,
-    "explanation": "Containers share the host OS kernel (process-level isolation), making them lightweight (MBs) and fast. VMs each have a full OS (hardware-level isolation), making them heavier (GBs)."
-  },
-  {
-    "chapter": 0,
-    "question": "In microservices architecture, what does 'database per service' mean?",
-    "options": [
-      "All services share one database",
-      "Each microservice has its own independent database",
-      "Databases are eliminated",
-      "Services share database instances but separate schemas"
-    ],
-    "correct": 1,
-    "explanation": "Database per service means each microservice manages its own database independently, enabling loose coupling and independent scaling."
-  },
-  {
-    "chapter": 0,
-    "question": "Which serverless pricing model is most accurate?",
-    "options": [
-      "Pay for reserved capacity",
-      "Pay only for execution time and requests",
-      "Flat monthly fee",
-      "Pay per server hour"
-    ],
-    "correct": 1,
-    "explanation": "Serverless uses pay-per-use pricing based on number of requests, execution time, and memory/CPU usage. You pay nothing when idle (scales to zero)."
-  },
-  {
-    "chapter": 0,
-    "question": "What is the purpose of etcd in Kubernetes?",
-    "options": [
-      "Container runtime",
-      "Distributed key-value store holding cluster state",
-      "Load balancer",
-      "Network proxy"
-    ],
-    "correct": 1,
-    "explanation": "etcd is a distributed, strongly consistent key-value store that holds all cluster state, including resource definitions, secrets, configs, and node state."
-  },
-  {
-    "chapter": 0,
-    "question": "Which factor does NOT contribute to cloud cost optimization?",
-    "options": [
-      "Auto-scaling based on demand",
-      "Using reserved instances for stable workloads",
-      "Keeping all resources running 24/7",
-      "Right-sizing instances"
-    ],
-    "correct": 2,
-    "explanation": "Keeping all resources running 24/7 wastes money. Cost optimization includes auto-scaling, reserved instances for predictable loads, and right-sizing."
-  },
-  {
-    "chapter": 0,
-    "question": "What is the US CLOUD Act's impact on data sovereignty?",
-    "options": [
-      "It prevents data access by US authorities",
-      "It allows US authorities to request data from US providers even if stored abroad",
-      "It only applies to US-stored data",
-      "It has no impact on cloud data"
-    ],
-    "correct": 1,
-    "explanation": "The US CLOUD Act allows US authorities to request access to data from US-based providers, even if physically stored in other countries, impacting data sovereignty."
-  },
-    {
-    "chapter": 1,
-    "question": "What is the primary goal of Green Computing?",
-    "options": [
-      "To increase the processing power of supercomputers",
-      "To reduce energy consumption, carbon emissions, and electronic waste",
-      "To exclusively use solar power for data centers",
-      "To create biodegradable computer hardware"
-    ],
-    "correct": 1,
-    "explanation": "Green computing refers to environmentally responsible computing practices that aim to reduce energy consumption, carbon emissions, and electronic waste throughout the lifecycle of technology products."
-  },
-  {
-    "chapter": 1,
-    "question": "What is 'Cloud Bursting' in the context of a Hybrid Cloud?",
-    "options": [
-      "A security breach in the cloud",
-      "The process of deleting data to save space",
-      "Scaling workloads from a private cloud to a public cloud during demand spikes",
-      "Moving all operations permanently to the public cloud"
-    ],
-    "correct": 2,
-    "explanation": "Cloud bursting allows an organization to use its private cloud for normal workloads and 'burst' into a public cloud to access additional resources during times of high demand."
-  },
-  {
-    "chapter": 2,
-    "question": "Where does a Type-2 (Hosted) Hypervisor run?",
-    "options": [
-      "Directly on the bare metal hardware",
-      "On top of a host operating system",
-      "Inside a Docker container",
-      "It replaces the BIOS"
-    ],
-    "correct": 1,
-    "explanation": "Type-2 Hypervisors (like VMware Workstation) run as an application on top of a host operating system, unlike Type-1 hypervisors which run directly on hardware."
-  },
-  {
-    "chapter": 2,
-    "question": "Which virtualization technique allows users to access an application from a separate computer without installing it locally?",
-    "options": [
-      "Network Virtualization",
-      "Storage Virtualization",
-      "Application Virtualization",
-      "Server Virtualization"
-    ],
-    "correct": 2,
-    "explanation": "Application virtualization allows users to access and use an application from a separate computer (often via a server) without installing it on their local machine."
-  },
-  {
-    "chapter": 3,
-    "question": "What does 'Horizontal Scaling' refer to in a PaaS environment?",
-    "options": [
-      "Increasing the CPU and RAM of a single server",
-      "Adding more server instances to distribute the workload",
-      "Optimizing the application code for speed",
-      "Moving the application to a larger data center"
-    ],
-    "correct": 1,
-    "explanation": "Horizontal scaling (Scale Out) involves adding more instances of a server or application to handle increased load, whereas vertical scaling involves adding power to a single instance."
-  },
-  {
-    "chapter": 3,
-    "question": "Which instruction in a Dockerfile is used to specify the base image?",
-    "options": [
-      "RUN",
-      "CMD",
-      "FROM",
-      "COPY"
-    ],
-    "correct": 2,
-    "explanation": "The 'FROM' instruction initializes a new build stage and sets the Base Image for subsequent instructions (e.g., 'FROM openjdk')."
-  },
-  {
-    "chapter": 4,
-    "question": "What is the 'Noisy Neighbor' problem in Multi-Tenancy?",
-    "options": [
-      "Tenants sending spam emails to each other",
-      "One tenant using excessive resources, degrading performance for others",
-      "A security breach where tenants can see each other's data",
-      "Loud cooling fans in the server room"
-    ],
-    "correct": 1,
-    "explanation": "In a shared multi-tenant environment, a 'noisy neighbor' is a tenant that consumes a disproportionate amount of resources (CPU, memory), negatively affecting the performance of other tenants."
-  },
-  {
-    "chapter": 4,
-    "question": "Which SaaS integration method involves an event-driven push notification from one app to another?",
-    "options": [
-      "REST API",
-      "SOAP API",
-      "GraphQL",
-      "Webhooks"
-    ],
-    "correct": 3,
-    "explanation": "Webhooks are used for event-driven communication, allowing one application to send real-time data (push notifications) to another when a specific event occurs."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the smallest deployable unit in Kubernetes?",
-    "options": [
-      "Container",
-      "Pod",
-      "Node",
-      "Service"
-    ],
-    "correct": 1,
-    "explanation": "A Pod is the smallest deployable unit in Kubernetes. It represents a single instance of a running application and can contain one or more tightly coupled containers."
-  },
-  {
-    "chapter": 5,
-    "question": "What is a 'Cold Start' in Serverless computing?",
-    "options": [
-      "The time it takes to reboot a physical server",
-      "The delay experienced when a function is invoked after being idle",
-      "Deploying code to a cold data center",
-      "The initial setup of an AWS account"
-    ],
-    "correct": 1,
-    "explanation": "A Cold Start refers to the latency experienced when a serverless function is invoked for the first time or after a period of inactivity, as the provider must provision the runtime environment."
-  },
-  {
-    "chapter": 6,
-    "question": "How do Security Groups differ from Network ACLs regarding state?",
-    "options": [
-      "Security Groups are stateful; Network ACLs are stateless",
-      "Security Groups are stateless; Network ACLs are stateful",
-      "Both are stateless",
-      "Both are stateful"
-    ],
-    "correct": 0,
-    "explanation": "Security Groups are stateful (return traffic is automatically allowed), while Network ACLs are stateless (return traffic must be explicitly allowed)."
-  },
-  {
-    "chapter": 6,
-    "question": "In the CIA Triad of Cloud Security, what does 'Integrity' ensure?",
-    "options": [
-      "Data is accessible only to authorized users",
-      "Data and systems are accurate and free from unauthorized tampering",
-      "Services are available 99.9% of the time",
-      "Users are who they say they are"
-    ],
-    "correct": 1,
-    "explanation": "Integrity ensures that data and systems remain accurate and consistent over their lifecycle and have not been altered by unauthorized parties."
-  },
-  {
-    "chapter": 1,
-    "question": "Which computing paradigm is described as a collection of resources owned by multiple organizations that are coordinated to solve a common problem?",
-    "options": [
-      "Utility Computing",
-      "Grid Computing",
-      "Cluster Computing",
-      "Edge Computing"
-    ],
-    "correct": 1,
-    "explanation": "Grid computing is defined as a collection of resources owned by multiple organizations that are coordinated to allow them to solve a common problem."
-  },
-  {
-    "chapter": 1,
-    "question": "Which cloud characteristic ensures that resources can be dynamically adjusted to meet varying workloads without manual intervention?",
-    "options": [
-      "Broad Network Access",
-      "Resource Pooling",
-      "Rapid Elasticity",
-      "Measured Service"
-    ],
-    "correct": 2,
-    "explanation": "Elasticity refers to the ability of a system to dynamically adjust its resource allocation in response to changing demands, enabling efficient resource utilization."
-  },
-  {
-    "chapter": 2,
-    "question": "Which type of cloud storage is ideal for unstructured data (like images and videos) and is accessed via APIs rather than a file system?",
-    "options": [
-      "Block Storage",
-      "Volume Storage",
-      "Object Storage",
-      "File Storage"
-    ],
-    "correct": 2,
-    "explanation": "Object storage is a file repository used to store individual files ('objects') like images and videos, and is accessed through an API rather than a network share."
-  },
-  {
-    "chapter": 2,
-    "question": "What is a characteristic of a Type-1 (Bare Metal) Hypervisor?",
-    "options": [
-      "It runs as an application inside a host operating system",
-      "It runs directly on the underlying host hardware",
-      "It requires a Windows installation to function",
-      "It is primarily used for desktop virtualization only"
-    ],
-    "correct": 1,
-    "explanation": "A Type-1 Hypervisor (Native/Bare metal) runs directly on the underlying host system and does not require a base server operating system."
-  },
-  {
-    "chapter": 3,
-    "question": "Which load balancing algorithm distributes traffic to the server that currently has the lowest number of active sessions?",
-    "options": [
-      "Round Robin",
-      "IP Hash",
-      "Least Connections",
-      "Random Selection"
-    ],
-    "correct": 2,
-    "explanation": "The 'Least Connections' technique sends traffic to the server with the fewest active connections, preventing overload on busy servers."
-  },
-  {
-    "chapter": 3,
-    "question": "In the context of Docker, what is the purpose of the 'docker build' command?",
-    "options": [
-      "To download an image from a registry",
-      "To run a container from an image",
-      "To create a Docker image from a Dockerfile",
-      "To stop all running containers"
-    ],
-    "correct": 2,
-    "explanation": "The 'docker build' command is used to build a docker image using a Dockerfile located in the specified directory."
-  },
-  {
-    "chapter": 4,
-    "question": "What is a key principle of Service Oriented Architecture (SOA) regarding dependencies?",
-    "options": [
-      "Tight Coupling",
-      "Loose Coupling",
-      "Monolithic Design",
-      "Hard Dependencies"
-    ],
-    "correct": 1,
-    "explanation": "SOA promotes 'Loose Coupling', meaning applications interact with services through standardized interfaces, reducing dependencies so that the failure of one system does not impact others."
-  },
-  {
-    "chapter": 4,
-    "question": "Which API type relies on XML and strict contracts, and is traditionally used in enterprise systems?",
-    "options": [
-      "REST API",
-      "GraphQL",
-      "SOAP API",
-      "Webhooks"
-    ],
-    "correct": 2,
-    "explanation": "SOAP APIs use XML and strict contracts, making them common for enterprise systems, whereas REST uses JSON and HTTP methods."
-  },
-  {
-    "chapter": 5,
-    "question": "In Kubernetes, what is the role of 'etcd'?",
-    "options": [
-      "It acts as the front door for API requests",
-      "It schedules pods to worker nodes",
-      "It is a distributed key-value store that holds the cluster state",
-      "It manages the network traffic between services"
-    ],
-    "correct": 2,
-    "explanation": "etcd is a distributed, strongly consistent key-value store that holds the cluster state, including resource definitions, secrets, and configs."
-  },
-  {
-    "chapter": 5,
-    "question": "What is the 'Database per Service' pattern in Cloud Native architectures?",
-    "options": [
-      "All microservices share a single massive database",
-      "Each microservice has its own dedicated database to ensure loose coupling",
-      "Databases are only used for the frontend application",
-      "Data is stored exclusively in local text files"
-    ],
-    "correct": 1,
-    "explanation": "In a cloud-native environment, each microservice typically uses its own database (Database per Service pattern) to ensure independence and scalability."
-  },
-  {
-    "chapter": 6,
-    "question": "In cloud security, what effectively replaces the traditional network perimeter?",
-    "options": [
-      "Physical Firewalls",
-      "Identity and Access Management (IAM)",
-      "Antivirus Software",
-      "The Hypervisor"
-    ],
-    "correct": 1,
-    "explanation": "In cloud environments, IAM (Identity and Access Management) is the cornerstone of security and effectively replaces the traditional network perimeter, making identity the new security boundary."
-  },
-  {
-    "chapter": 6,
-    "question": "Which statement accurately describes Cloud Security Groups?",
-    "options": [
-      "They are stateless and require explicit allow rules for return traffic",
-      "They operate at the subnet level",
-      "They are stateful; if inbound traffic is allowed, return traffic is automatically permitted",
-      "They support explicit deny rules"
-    ],
-    "correct": 2,
-    "explanation": "Security Groups are stateful, meaning if inbound traffic is allowed, the corresponding outbound response is automatically permitted."
-  },
-  {
-    "chapter": 3,
-    "question": "Which command is used to create a Docker image from a Dockerfile?",
-    "options": [
-      "docker run",
-      "docker build",
-      "docker create",
-      "docker commit"
-    ],
-    "correct": 1,
-    "explanation": "The 'docker build' command is used to build a Docker image from a Dockerfile, often using the '-t' flag to tag the image."
-  },
-  {
-    "chapter": 3,
-    "question": "Which flag is used with the 'docker run' command to map a host port to a container port?",
-    "options": [
-      "-v",
-      "-d",
-      "-p",
-      "-it"
-    ],
-    "correct": 2,
-    "explanation": "The '-p' flag is used for port mapping (e.g., '-p 80:80') to map a port on the host machine to a port inside the container."
-  },
-  {
-    "chapter": 3,
-    "question": "What is the function of the command 'docker system prune'?",
-    "options": [
-      "It stops all running containers",
-      "It removes all unused data including stopped containers, unused networks, and dangling images",
-      "It pushes all local images to Docker Hub",
-      "It updates the Docker engine to the latest version"
-    ],
-    "correct": 1,
-    "explanation": "The 'docker system prune' command removes all unused Docker resources, such as stopped containers, unused networks, and build caches."
-  },
-  {
-    "chapter": 3,
-    "question": "Which command specifically removes one or multiple Docker images?",
-    "options": [
-      "docker rm",
-      "docker del",
-      "docker rmi",
-      "docker erase"
-    ],
-    "correct": 2,
-    "explanation": "The 'docker rmi' command is used to force remove one or multiple images, whereas 'docker rm' is used for containers."
-  },
-  {
-    "chapter": 3,
-    "question": "Which Docker Compose command builds images and runs containers defined in the YAML file?",
-    "options": [
-      "docker-compose start",
-      "docker-compose run",
-      "docker-compose up",
-      "docker-compose build"
-    ],
-    "correct": 2,
-    "explanation": "The 'docker-compose up' command builds all images and runs the containers specified in the docker-compose.yml file."
-  },
-  {
-    "chapter": 3,
-    "question": "Which instruction in a Dockerfile sets the directory from which subsequent commands are run?",
-    "options": [
-      "MKDIR",
-      "CD",
-      "WORKDIR",
-      "COPY"
-    ],
-    "correct": 2,
-    "explanation": "The 'WORKDIR' instruction specifies the working directory inside the container where execution application files will be placed and commands run."
-  },
-  {
-    "chapter": 3,
-    "question": "What does the '-it' flag allow you to do when running 'docker run'?",
-    "options": [
-      "Run the container in the background (detached mode)",
-      "Run the container interactively",
-      "Automatically remove the container when it exits",
-      "Map network ports"
-    ],
-    "correct": 1,
-    "explanation": "The '-it' flag allows you to run the container interactively, often used to open a bash shell inside the container."
-  },
-  {
-    "chapter": 3,
-    "question": "Which command is used to stop and remove all services (containers, networks) created by 'docker-compose up'?",
-    "options": [
-      "docker-compose stop",
-      "docker-compose down",
-      "docker-compose halt",
-      "docker-compose delete"
-    ],
-    "correct": 1,
-    "explanation": "The 'docker-compose down' command stops containers and removes the resources (networks, containers) created by 'docker-compose up'."
-  },
-  {
-    "chapter": 5,
-    "question": "In the context of DevOps, what is the primary practice of 'Continuous Integration' (CI)?",
-    "options": [
-      "Automatically deploying every change to production immediately",
-      "Developers frequently merging code changes into a shared repository where automated tests run",
-      "Manually copying code files to a server once a month",
-      "Writing infrastructure configuration files using Python"
-    ],
-    "correct": 1,
-    "explanation": "Continuous Integration (CI) involves developers frequently merging code changes into a shared repository, where automated tests run to ensure code quality."
-  },
-  {
-    "chapter": 5,
-    "question": "What distinguishes 'Continuous Deployment' from 'Continuous Delivery'?",
-    "options": [
-      "Continuous Deployment automatically deploys code to production after passing tests, whereas Continuous Delivery may stop at staging",
-      "Continuous Deployment involves manual testing, while Continuous Delivery is fully automated",
-      "Continuous Deployment is for hardware, while Continuous Delivery is for software",
-      "There is no difference; they are synonyms"
-    ],
-    "correct": 0,
-    "explanation": "Continuous Deployment/Delivery (CD) automatically deploys code to production (CD) or staging (Delivery) after passing all tests."
-  },
-  {
-    "chapter": 3,
-    "question": "What is the primary function of AWS Elastic Beanstalk?",
-    "options": [
-      "It is a SaaS application for email marketing",
-      "It is a PaaS that automatically handles the provisioning, deployment, and scaling of web applications",
-      "It is an IaaS service that provides raw bare-metal servers",
-      "It is a database service for storing unstructured data"
-    ],
-    "correct": 1,
-    "explanation": "AWS Elastic Beanstalk is a PaaS for deploying and scaling web applications where the platform automatically handles the provisioning of resources (EC2, load balancers, etc.)."
-  },
-  {
-    "chapter": 5,
-    "question": "How is billing determined for AWS Lambda functions?",
-    "options": [
-      "You pay a flat monthly fee regardless of usage",
-      "You pay based on the number of servers provisioned",
-      "You pay only for the duration the function runs (execution time) and the number of requests",
-      "It is free for all users"
-    ],
-    "correct": 2,
-    "explanation": "With AWS Lambda, you pay only for the execution time (ms-based) and the number of requests; you do not pay for idle time."
-  },
-  {
-    "chapter": 5,
-    "question": "Which AWS service is an example of 'Declarative' Infrastructure as Code (IaC)?",
-    "options": [
-      "AWS EC2",
-      "AWS Lambda",
-      "AWS CloudFormation",
-      "Amazon S3"
-    ],
-    "correct": 2,
-    "explanation": "AWS CloudFormation is listed as an example of a Declarative IaC approach, where you specify the desired final state of the infrastructure."
+    "quiz": [
+      {
+        "question": "What are Security Groups in cloud computing?",
+        "answerOptions": [
+          {
+            "text": "Physical firewalls",
+            "isCorrect": false,
+            "rationale": "Security groups are virtual, software-defined constructs, not hardware."
+          },
+          {
+            "text": "Stateful virtual firewalls controlling traffic to cloud resources",
+            "isCorrect": true,
+            "rationale": "They act as a filter for instances, allowing traffic based on rules. 'Stateful' means they automatically allow return traffic."
+          },
+          {
+            "text": "User access roles",
+            "isCorrect": false,
+            "rationale": "User access is managed by IAM (Identity and Access Management)."
+          },
+          {
+            "text": "Encryption keys",
+            "isCorrect": false,
+            "rationale": "Keys are for data protection, not network traffic control."
+          }
+        ],
+        "hint": "The first line of defense for your EC2 instance's network."
+      },
+      {
+        "question": "What does 'stateful' mean for Security Groups?",
+        "answerOptions": [
+          {
+            "text": "They remember previous configurations",
+            "isCorrect": false,
+            "rationale": "Stateful refers to network connection states, not configuration history."
+          },
+          {
+            "text": "If inbound traffic is allowed, outbound response is automatically permitted",
+            "isCorrect": true,
+            "rationale": "The firewall tracks the connection state. If you allow a request in, it knows to let the reply out without a separate rule."
+          },
+          {
+            "text": "They require manual configuration",
+            "isCorrect": false,
+            "rationale": "All firewalls require configuration; this doesn't define 'stateful'."
+          },
+          {
+            "text": "They only work with TCP",
+            "isCorrect": false,
+            "rationale": "Stateful inspection works with UDP and ICMP as well."
+          }
+        ],
+        "hint": "It has a memory of active connections, so you don't need two rules for one conversation."
+      },
+      {
+        "question": "What is the 'new security perimeter' in cloud computing?",
+        "answerOptions": [
+          {
+            "text": "Network firewalls",
+            "isCorrect": false,
+            "rationale": "Network firewalls are the *old* perimeter. In the cloud, networks are fluid."
+          },
+          {
+            "text": "Physical data centers",
+            "isCorrect": false,
+            "rationale": "You don't control the physical center in the cloud."
+          },
+          {
+            "text": "Identity (IAM)",
+            "isCorrect": true,
+            "rationale": "Since users access cloud resources from anywhere, verifying *who* they are (Identity) is the most critical control point."
+          },
+          {
+            "text": "Encryption keys",
+            "isCorrect": false,
+            "rationale": "Encryption protects data, but Identity controls access to it."
+          }
+        ],
+        "hint": "It's not about *where* you are (network), but *who* you are."
+      },
+      {
+        "question": "What is the difference between data residency and data sovereignty?",
+        "answerOptions": [
+          {
+            "text": "They are the same",
+            "isCorrect": false,
+            "rationale": "They are distinct concepts regarding location vs. law."
+          },
+          {
+            "text": "Residency is physical location; sovereignty is legal jurisdiction",
+            "isCorrect": true,
+            "rationale": "Residency is just geography (e.g., 'Server is in France'). Sovereignty is about which country's laws apply to that data."
+          },
+          {
+            "text": "Residency is legal; sovereignty is physical",
+            "isCorrect": false,
+            "rationale": "This is swapped."
+          },
+          {
+            "text": "Residency only applies to backups",
+            "isCorrect": false,
+            "rationale": "Residency applies to all data."
+          }
+        ],
+        "hint": "One is GPS coordinates; the other is the gavel of the law."
+      },
+      {
+        "question": "What is envelope encryption?",
+        "answerOptions": [
+          {
+            "text": "Encrypting emails",
+            "isCorrect": false,
+            "rationale": "While the name sounds like email, it's a general cryptographic technique."
+          },
+          {
+            "text": "Using a Key Encryption Key (KEK) to encrypt the Data Encryption Key (DEK)",
+            "isCorrect": true,
+            "rationale": "You encrypt the data with a key (DEK), then you encrypt *that* key with a master key (KEK). It's a key inside a key."
+          },
+          {
+            "text": "Physical security for keys",
+            "isCorrect": false,
+            "rationale": "It's a digital algorithm, not a physical envelope."
+          },
+          {
+            "text": "Encrypting only metadata",
+            "isCorrect": false,
+            "rationale": "Envelope encryption protects the actual data keys, and by extension, the data."
+          }
+        ],
+        "hint": "Putting the key inside a locked box."
+      },
+      {
+        "question": "Under GDPR, what is the maximum penalty for non-compliance?",
+        "answerOptions": [
+            {
+                "text": "€1 million",
+                "isCorrect": false,
+                "rationale": "This is far too low for major corporations."
+            },
+            {
+                "text": "€10 million or 2% of global revenue",
+                "isCorrect": false,
+                "rationale": "This is the penalty for less severe infringements."
+            },
+            {
+                "text": "€20 million or 4% of global revenue",
+                "isCorrect": true,
+                "rationale": "For severe violations, the fine is the higher of €20M or 4% of total worldwide annual turnover."
+            },
+            {
+                "text": "€50 million",
+                "isCorrect": false,
+                "rationale": "While fines can be high, the specific statutory cap is defined by the 20M/4% rule."
+            }
+        ],
+        "hint": "It's a huge number designed to scare even tech giants—think 4%."
+      }
+    ]
   }
 ]
