@@ -17,17 +17,70 @@ import React from 'react';
  * 5. Emit onSelect(workshop.id) when the card/button is clicked.
  * 6. Stretch: show a different emoji/icon for in-person vs remote sessions.
  */
-function WorkshopCard() {
+function WorkshopCard({ workshop, isSelected, onSelect }) {
+  const isFull = workshop.seats.taken >= workshop.seats.total;
+  const remainingSeats = workshop.seats.total - workshop.seats.taken;
+  const isAlmostFull = remainingSeats > 0 && remainingSeats <= 3;
+
+  const cardClass = [
+    'workshop-card',
+    isSelected && 'workshop-card--selected',
+    isFull && 'workshop-card--full'
+  ].filter(Boolean).join(' ');
+
+  const getSeatStatus = () => {
+    if (isFull) return { text: 'Waitlist only', className: 'pill--danger' };
+    if (isAlmostFull) return { text: 'Filling fast', className: 'pill--warning' };
+    return { text: 'Open', className: 'pill--success' };
+  };
+
+  const seatStatus = getSeatStatus();
+  const modeIcon = workshop.mode === 'remote' ? '🌐' : '📍';
+
   return (
-    <article className="workshop-card">
+    <article className={cardClass} onClick={() => onSelect(workshop.id)}>
       <header>
-        <p className="eyebrow">Workshop</p>
-        <h3>TODO: Render workshop title</h3>
+        <p className="eyebrow">{workshop.focus}</p>
+        <h3>{workshop.title}</h3>
       </header>
 
-      <p className="placeholder">
-        Replace this placeholder with the actual workshop summary, status badges, and select button.
-      </p>
+      <div className="workshop-meta">
+        <p className="workshop-instructor">👤 {workshop.instructor}</p>
+        <p className="workshop-mode">{modeIcon} {workshop.mode}</p>
+        <p className="workshop-session">🕐 {workshop.session}</p>
+        <p className="workshop-duration">⏱️ {workshop.duration}</p>
+        <p className="workshop-level">📊 {workshop.level}</p>
+      </div>
+
+      <p className="workshop-summary">{workshop.summary}</p>
+
+      <div className="workshop-badges">
+        <span className={`pill ${seatStatus.className}`}>
+          {seatStatus.text}
+        </span>
+        {!isFull && (
+          <span className="pill">
+            {remainingSeats} / {workshop.seats.total} seats
+          </span>
+        )}
+      </div>
+
+      <div className="workshop-tags">
+        {workshop.tags.map(tag => (
+          <span key={tag} className="pill pill--small">{tag}</span>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        className="workshop-select-btn"
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect(workshop.id);
+        }}
+      >
+        {isSelected ? 'Selected' : 'Select Workshop'}
+      </button>
     </article>
   );
 }

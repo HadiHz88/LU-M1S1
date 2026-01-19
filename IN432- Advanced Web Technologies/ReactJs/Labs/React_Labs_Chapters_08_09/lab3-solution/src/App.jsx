@@ -1,32 +1,106 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { INITIAL_WORKSHOPS } from './data/workshops';
+import FilterPanel from './components/FilterPanel';
+import WorkshopCard from './components/WorkshopCard';
+import RegistrationForm from './components/RegistrationForm';
+import SummaryPanel from './components/SummaryPanel';
 
 // React Lab 03 focuses on Chapter 08 (Conditional Rendering) and Chapter 09 (Forms).
 // Follow the inline TODOs to wire up the Workshop Registration Control Room.
 
 function App() {
-  // TODO: Import useState/useMemo/useEffect from React once you begin.
-  // TODO: Create state for:
-  // - workshops: start with INITIAL_WORKSHOPS
-  // - filters: { showOnlyOpen: false, mode: 'all', focus: 'all' }
-  // - selectedWorkshopId: default to INITIAL_WORKSHOPS[0]?.id
-  // - lastRegistration: store the most recent successful submission
+  // State management
+  const [workshops, setWorkshops] = useState(INITIAL_WORKSHOPS);
+  const [filters, setFilters] = useState({
+    showOnlyOpen: false,
+    mode: 'all',
+    focus: 'all'
+  });
+  const [selectedWorkshopId, setSelectedWorkshopId] = useState(INITIAL_WORKSHOPS[0]?.id);
+  const [lastRegistration, setLastRegistration] = useState(null);
 
-  // TODO (Chapter 08):
-  // - Derive filteredWorkshops based on the filters state.
-  // - Compute selectedWorkshop by matching selectedWorkshopId.
-  // - Add helper booleans such as isFull, isEmptyState, isMorningSession, etc.
-  // - Build a string that summarizes the active filters for the hero banner.
+  // Derive filteredWorkshops based on filters
+  const filteredWorkshops = workshops.filter(workshop => {
+    // Filter by open seats
+    if (filters.showOnlyOpen && workshop.seats.taken >= workshop.seats.total) {
+      return false;
+    }
+    // Filter by mode
+    if (filters.mode !== 'all' && workshop.mode !== filters.mode) {
+      return false;
+    }
+    // Filter by focus
+    if (filters.focus !== 'all' && workshop.focus !== filters.focus) {
+      return false;
+    }
+    return true;
+  });
 
-  // TODO (Chapter 09):
-  // - Implement handleRegistrationSubmit that:
-  //   1. Receives the payload from <RegistrationForm />.
-  //   2. Updates seats for the selected workshop (or flags waitlist).
-  //   3. Stores a friendly summary object inside lastRegistration.
-  // - Pass the correct props to <RegistrationForm /> and <SummaryPanel />.
+  // Compute selectedWorkshop
+  const selectedWorkshop = workshops.find(w => w.id === selectedWorkshopId);
 
-  // TODO: Add handlers handleFilterChange and handleSelectWorkshop.
-  // Remember to use functional updates when the next value depends on the previous one.
+  // Auto-fallback if selected workshop is filtered out
+  useEffect(() => {
+    if (selectedWorkshop && !filteredWorkshops.find(w => w.id === selectedWorkshopId)) {
+      if (filteredWorkshops.length > 0) {
+        setSelectedWorkshopId(filteredWorkshops[0].id);
+      }
+    }
+  }, [filteredWorkshops, selectedWorkshopId, selectedWorkshop]);
+
+  // Helper values
+  const openCount = workshops.filter(w => w.seats.taken < w.seats.total).length;
+  const totalCount = workshops.length;
+  const isFull = selectedWorkshop ? selectedWorkshop.seats.taken >= selectedWorkshop.seats.total : false;
+  const remainingSeats = selectedWorkshop ? selectedWorkshop.seats.total - selectedWorkshop.seats.taken : 0;
+  const almostFull = selectedWorkshop && remainingSeats > 0 && remainingSeats <= 3;
+  const noResults = filteredWorkshops.length === 0;
+
+  // Build filter summary caption
+  const getFilterSummary = () => {
+    const parts = [];
+    if (filters.showOnlyOpen) parts.push('open sessions');
+    if (filters.mode !== 'all') parts.push(`${filters.mode}-only workshops`);
+    if (filters.focus !== 'all') parts.push(`focused on ${filters.focus}`);
+    
+    if (parts.length === 0) return null;
+    return `Showing ${parts.join(', ')}`;
+  };
+
+  // Handlers
+  const handleFilterChange = (partial) => {
+    setFilters(prev => ({ ...prev, ...partial }));
+  };
+
+  const handleSelectWorkshop = (id) => {
+    setSelectedWorkshopId(id);
+  };
+
+  const handleRegistrationSubmit = (payload) => {
+    const workshop = workshops.find(w => w.id === payload.workshopId);
+    if (!workshop) return;
+
+    const hasSeats = workshop.seats.taken < workshop.seats.total;
+    const isWaitlist = !hasSeats;
+
+    // Update seats if available
+    if (hasSeats) {
+      setWorkshops(prev => prev.map(w => 
+        w.id === payload.workshopId
+          ? { ...w, seats: { ...w.seats, taken: w.seats.taken + 1 } }
+          : w
+      ));
+    }
+
+    // Store registration
+    setLastRegistration({
+      ...payload,
+      waitlist: isWaitlist,
+      submittedAt: new Date().toISOString(),
+      workshopTitle: workshop.title,
+      workshopSession: workshop.session
+    });
+  };
 
   return (
     <main className="lab-shell">
@@ -40,9 +114,14 @@ function App() {
         </div>
 
         <div className="hero-stats">
-          {/* TODO: Show how many workshops are still open vs total. */}
-          {/* Example: “3 of 4 sessions still have seats”. */}
-          {/* TODO: If the selected workshop is almost full (<=3 seats), render a warning pill. */}
+          <span className="pill">
+            {openCount} of {totalCount} sessions still open
+          </span>
+          {almostFull && (
+            <span className="pill pill--warning">
+              Urgent · Almost full
+            </span>
+          )}
         </div>
       </header>
 
@@ -52,14 +131,16 @@ function App() {
           <p>Use these controls to test dynamic UI rendering based on Chapter 08 techniques.</p>
         </div>
 
-        {/* TODO: Render <FilterPanel /> with props:
-            filters={filters}
-            onFilterChange={handleFilterChange}
-        */}
+        <FilterPanel 
+          filters={filters}
+          onFilterChange={handleFilterChange}
+        />
 
-        {/* TODO: Conditionally render a caption summarizing the active filters.
-            Example: “Showing remote-only workshops focused on Forms”.
-        */}
+        {getFilterSummary() && (
+          <p className="filter-caption">
+            {getFilterSummary()}
+          </p>
+        )}
       </section>
 
       <section className="content-grid">
@@ -69,16 +150,28 @@ function App() {
               <p className="eyebrow">Sessions</p>
               <h2>Available Workshops</h2>
             </div>
-            {/* TODO: Show selected workshop title or a placeholder badge. */}
+            {selectedWorkshop && (
+              <span className="pill pill--selected">{selectedWorkshop.title}</span>
+            )}
           </header>
 
-          {/* TODO: Replace the paragraph below with:
-              - Conditional empty state article when filteredWorkshops.length === 0
-              - A div.workshop-grid that maps filteredWorkshops -> <WorkshopCard />
-          */}
-          <p className="placeholder">
-            Workshop list goes here. Map over filteredWorkshops and render <code>WorkshopCard</code> for each entry.
-          </p>
+          {noResults ? (
+            <article className="empty-state">
+              <h3>No workshops match your filters</h3>
+              <p>Try adjusting the filters above to see more options.</p>
+            </article>
+          ) : (
+            <div className="workshop-grid">
+              {filteredWorkshops.map(workshop => (
+                <WorkshopCard
+                  key={workshop.id}
+                  workshop={workshop}
+                  isSelected={workshop.id === selectedWorkshopId}
+                  onSelect={handleSelectWorkshop}
+                />
+              ))}
+            </div>
+          )}
         </section>
 
         <section className="card form-panel">
@@ -87,17 +180,24 @@ function App() {
               <p className="eyebrow">Registration</p>
               <h2>Reserve Your Seat</h2>
             </div>
-            {/* TODO: Show a badge that says “Full · Waitlist only” when the selected workshop has zero seats. */}
+            {isFull && (
+              <span className="pill pill--danger">Full · Waitlist only</span>
+            )}
           </header>
 
-          {/* TODO: Conditionally render <RegistrationForm /> only when a workshop is selected.
-              Pass props like:
+          {selectedWorkshop && (
+            <RegistrationForm
               workshop={selectedWorkshop}
               onSubmit={handleRegistrationSubmit}
-              disabled={yourDerivedBoolean}
-          */}
+            />
+          )}
 
-          {/* TODO: After a successful submit, show <SummaryPanel registration={lastRegistration} onClear={...} /> */}
+          {lastRegistration && (
+            <SummaryPanel
+              registration={lastRegistration}
+              onClear={() => setLastRegistration(null)}
+            />
+          )}
         </section>
       </section>
     </main>
