@@ -1,0 +1,107 @@
+# =========================
+# Repo-specific (this workspace)
+# =========================
+
+# Draft files / local scratch
+*.draft.*
+/draft
+/other
+
+# Temporary course folders (kept out of git)
+# (e.g., for IN432, IN402, etc.)
+
+# =========================
+# Markdown tooling
+# =========================
+
+# Pre-generated / local-only markdown
+*.local.md
+
+# Markdown customization files (local)
+/.markdownlint.yaml
+/.crossnote
+.markdownlint.json
+
+# =========================
+# Keys / secrets
+# =========================
+
+*.key
+*.pem
+*.pub
+*.asc
+
+# =========================
+# MERN stack (general)
+# =========================
+
+# Dependencies
+**/node_modules/
+**/bower_components/
+
+# Env / secrets
+**/.env
+**/.env.*
+**/*.env
+**/*.env.*
+**/.npmrc
+**/.yarnrc
+**/.yarnrc.yml
+
+# Logs
+**/logs/
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# Builds / bundles
+**/dist/
+**/build/
+**/out/
+**/.cache/
+**/.parcel-cache/
+**/.turbo/
+**/.vite/
+**/.rollup.cache/
+
+# Coverage / test outputs
+**/coverage/
+**/.nyc_output/
+
+# Next.js
+**/.next/
+
+# React Native (just in case)
+**/.expo/
+**/.expo-shared/
+
+# TypeScript build info
+**/*.tsbuildinfo
+
+# Local tooling / editor
+**/.DS_Store
+**/Thumbs.db
+**/.vscode/
+**/.idea/
+
+# Temporary files
+**/*.tmp
+**/*.temp
+**/*.swp
+
+# =========================
+# MongoDB (local)
+# =========================
+
+**/data/db/
+**/dump/
+**/*.bson
+**/*.lock
+
+
+# =========================
+# Specific ignored files
+# =========================
+*.mp4
